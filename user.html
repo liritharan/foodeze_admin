@@ -1,0 +1,1630 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Neon Admin Panel" />
+<meta name="author" content="" />
+
+<title>Admin Panel</title>
+	<link rel="stylesheet" href="assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
+	<link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/neon-core.css">
+	<!--<link rel="stylesheet" href="assets/css/neon-theme.css">-->
+	<link rel="stylesheet" href="assets/css/neon-forms.css">
+	<link rel="stylesheet" href="assets/css/custom.css">
+	<link rel="stylesheet" href="assets/css/custom-datatables.css">
+	<script src="assets/js/jquery-1.11.0.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+	
+   <script>
+   $(window).load(function() {
+	  
+     $('#preloader').delay(350).fadeOut('slow');
+     $('body').delay(350).css({'overflow':'visible'});
+   })
+  </script>
+	    <script src="jquery.min.js"></script>
+	    <script src="assets/js/dynamic-menu.js"></script>
+   
+    <!-- This is data table -->
+    <script src="jquery.dataTables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+	
+	
+    <!-- end - This is for export functionality only -->
+	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	
+	
+	<script>
+	    ('#main-menu').dynamicMenu();
+
+	</script>
+	
+</head>
+<body class="page-body" data-url="http://neon.dev">
+
+    
+
+
+
+<div id="preloader" align="center">
+	<div id="loading">
+		<img src="http://bringthings.com/foodies/admin/assets/images/loader.gif" alt="Loading.." height="140">
+	</div>
+</div>
+
+
+<style>
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.5);
+    z-index: 9999999;
+	height: 100%;
+    width: 100%;
+}
+#loading {
+    width: 380px;
+    height: 200px;
+    position: absolute;
+    left: 43%;
+    top: 50%;
+    margin: -104px 0 0 -100px;
+}
+</style>
+
+
+		<style>
+	    .users{
+	        background-color:#aac423;
+	    }
+	</style>
+
+<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->	
+	
+	<div class="sidebar-menu" style="min-height: 100vh;">
+  <header class="logo-env"> 
+    
+    <!-- logo -->
+    <div class="logo"> <a href="" style="font-size: 35px;font-weight: bold;"><img src="img/foodeze_logo.png" height="60" width="180" alt="" /></a> </div>
+    
+    <!-- logo collapse icon 
+    <div class="sidebar-collapse"> 
+        <a href="#" class="sidebar-collapse-icon with-animation">
+      add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition 
+      <i class="entypo-menu"></i> 
+      </a> 
+    </div>-->
+    
+    <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+    <div class="sidebar-mobile-menu visible-xs"> <a href="#" class="with-animation"><!-- add class "with-animation" to support animation --> 
+      <i class="entypo-menu"></i> </a> </div>
+  </header>
+  <ul id="main-menu" class="auto-inherit-active-class">
+    <!-- add class "multiple-expanded" to allow multiple submenus to open --> 
+    <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" --> 
+    <!-- Search Bar -->
+
+      <li class="dashboard"> <a href="dashboard.php"><i class="entypo-users"></i> <span class="title">Dashboard</span> </a></li>
+    
+
+                    <li class="users"> <a href="users.php"><i class="entypo-users"></i> <span class="title">All User List</span> </a></li>
+                  
+
+      
+      <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Manage Restaurants</span></a> 
+
+        <li class="restaurants"> <a href="restaurants.php"><i class="entypo-home"></i> <span class="title">Restaurants</span> </a></li>
+        <li class="restaurantrequest"> <a href="restaurantRequest.php"><i class="entypo-air"></i> <span class="title">Restaurant Request</span> </a></li>
+      </li>
+    
+
+      <li style="background:rgba(69, 74, 84, 0.3);" class="orders" > <a href="#" style="padding: 5px 10px;"><span class="title">Manage Orders</span></a> 
+
+        <li> <a href="orders.php?filter=AllOrder"><i class="entypo-air"></i> <span class="title">All Orders</span> </a></li>
+        <li> <a href="orders.php"><i class="entypo-air"></i> <span class="title">Active Orders</span> </a></li>
+        <li> <a href="orders.php?filter=completed"><i class="entypo-air"></i> <span class="title">Completed Orders</span> </a></li>
+        <li> <a href="orders.php?filter=restaurantRejected"><i class="entypo-air"></i> <span class="title">Restaurant Rejected</span> </a></li>
+
+      
+      </li>
+
+      <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Manage Rider</span></a> 
+         <li class="riders"> <a href="riders.php"><i class="entypo-users"></i> <span class="title">Our Riders</span></a> </li>
+	       <li class=riderrequest> <a href="ridersRequest.php"><i class="entypo-users"></i> <span class="title">Rider Request</span></a> </li>
+        <li class="chat"> <a href="chat.php"><i class="entypo-chat"></i> <span class="title">Chat Messages</span></a></li>
+      
+
+      
+	   
+      <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Manage Shift</span></a> 
+         <li class="ridershifts"><a href="Rider-shifts.php"><i class="entypo-clock"></i> <span class="title">Rider Shift</span></a> </li>
+         <li class="shifts"><a href="shifts.php"><i class="entypo-clock"></i> <span class="title">Open Shift</span></a> </li>
+      
+	    </li>
+	  
+     <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Manage Coupons</span></a> 
+	       <li class="coupons"><a href="Coupons.php"><i class="entypo-clock"></i> <span class="title">Restaurant Coupons</span></a> </li>
+         <li class="foodomia_coupons"><a href="Foodomia_Coupons.php"><i class="entypo-clock"></i> <span class="title">Foodeze Coupons</span></a> </li>
+	  </li>
+      
+        <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Earning</span></a> 
+           <li class="earning"><a href="earning.php"><i class="entypo-clock"></i> <span class="title">All Earnings</span></a> </li>
+      </li>
+    
+                  	
+              
+              
+              <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Web & App setting</span></a> 
+                <li class="calendar"> <a href="calendar.php"><i class="entypo-chat"></i> <span class="title">Calendar</span></a> </li>
+                  <li class="appslider"> <a href="appslider.php"><i class="entypo-chat"></i> <span class="title">Mobile App Sliders</span></a> </li>
+                  <li class="tax"> <a href="tax.php"><i class="entypo-chat"></i> <span class="title">Tax Information</span></a> </li>
+                  <li class="currency"> <a href="currency.php"><i class="entypo-chat"></i> <span class="title">Currency</span></a> </li>
+                  <li class="adminusers"> <a href="adminusers.php"><i class="entypo-users"></i> <span class="title">Admin Users</span></a> </li>
+              </li>
+                  
+      
+      
+      
+	  
+    
+  </ul>
+</div>
+			
+	<div class="main-content">
+	<div class="row">
+	
+	<!-- Profile Info and Notifications -->
+	<div class="col-md-6 col-sm-8 clearfix">
+		
+		<ul class="user-info pull-left pull-none-xsm">
+		
+						<!-- Profile Info -->
+			<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right 
+
+-->				
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<img src="assets/images/profile-picture.jpg" alt="" class="img-circle" width="44" />
+					super admin				</a>
+				
+				<ul class="dropdown-menu">
+					
+					<!-- Reverse Caret -->
+					<li class="caret"></li>
+					
+					<!-- Profile sub-links -->
+					<li>
+						<a href="profile.php">
+							<i class="entypo-user"></i>
+							Profile
+						</a>
+					</li>
+                    
+                    <li>
+                        <a href="login.php?log=out">
+                        	<i class="entypo-logout right"></i>
+                            Log Out 
+                        </a>
+                    </li>
+
+				</ul>
+			</li>
+		
+		</ul>
+	
+	</div>
+	
+	
+	<!-- Raw Links -->
+	<div class="col-md-6 col-sm-4 clearfix hidden-xs">
+		
+		<ul class="list-inline links-list pull-right">
+			
+			
+			<li class="sep"></li>
+
+			<li>
+				<a href="login.php?log=out">
+					Log Out <i class="entypo-logout right"></i>
+				</a>
+			</li>
+		</ul>
+		
+	</div>
+	
+</div>
+
+<hr />	
+
+<div class="row">
+        <div class="col-md-12">
+        
+        <div class="pull-left"><h2 class="toast-title">All Users</h2></div>
+        
+        <div class="clearfix"></div>
+        <br>
+
+	<table id="table-1" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+												<th>ID</th>
+												<th>Name</th>
+												<th>Email</th>
+												<th>Phone</th>
+												<th>Role</th>
+												<th>Device Token</th>
+												<th>Reg Date</th>
+												<th>Action</th>
+											</tr>
+                                        </thead>
+                                        <tfoot>
+                                           <tr>
+												<th>ID</th>
+												<th>Name</th>
+												<th>Email</th>
+												<th>Phone</th>
+												<th>Role</th>
+												<th>Device Token</th>
+												<th>Reg Date</th>
+												<th>Action</th>
+											</tr>
+                                        </tfoot>
+                                        <tbody>
+                                           <tr>
+															<td>55</td>
+															<td>Aman Shakya</td>
+															<td>amanshakya@email.com</td>
+															<td>9898989898</td>
+															<td>rider</td>
+															<td>NULL</td>
+															<td>2020-02-01 07:55:48 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('55','amanshakya@email.com','Aman','Shakya')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;55&quot;,&quot;email&quot;:&quot;amanshakya@email.com&quot;,&quot;password&quot;:&quot;$2y$10$RMYD2luQKdDgsRb4JnfPRulvyxi330\/4Hdj0Pe.vDI4ve31L5yEoi&quot;,&quot;salt&quot;:&quot;b05a792a5132644a9f624d09769139b600f04950e0a37c7dd0368cbe316f1881&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2020-02-01 07:55:48&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;rider&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;55&quot;,&quot;first_name&quot;:&quot;Aman&quot;,&quot;last_name&quot;:&quot;Shakya&quot;,&quot;phone&quot;:&quot;9898989898&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(55)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>54</td>
+															<td>Sann San</td>
+															<td>san@gmail.com</td>
+															<td>909876543222</td>
+															<td>rider</td>
+															<td>NULL</td>
+															<td>2020-01-26 06:06:06 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('54','san@gmail.com','Sann','San')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;54&quot;,&quot;email&quot;:&quot;san@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$CZCgnymH84nY4HJDuocC.eD8kEI76H3u1XEypEn4got.UrjHMLfSa&quot;,&quot;salt&quot;:&quot;b94fd9f59861881883765ec41ca3869550ea19a2873b88c988efb4d38ccb96c7&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2020-01-26 18:06:06&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;rider&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;54&quot;,&quot;first_name&quot;:&quot;Sann&quot;,&quot;last_name&quot;:&quot;San&quot;,&quot;phone&quot;:&quot;909876543222&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(54)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>53</td>
+															<td>Mohammed  Anas </td>
+															<td>anascmb@gmail.com</td>
+															<td>777208853</td>
+															<td>rider</td>
+															<td>NULL</td>
+															<td>2020-01-26 02:13:24 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('53','anascmb@gmail.com','Mohammed ','Anas ')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;53&quot;,&quot;email&quot;:&quot;anascmb@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$bHUqeE6hgHYk3veFOGQge.uPVwki72puDS9L.O7xxAwgWZOgvDJdG&quot;,&quot;salt&quot;:&quot;b8b731f2a98a1c5ce7b4796fc0700cbc2e18ee020473ddce18bc0b808e0dc370&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2020-01-26 14:13:24&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;rider&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;53&quot;,&quot;first_name&quot;:&quot;Mohammed &quot;,&quot;last_name&quot;:&quot;Anas &quot;,&quot;phone&quot;:&quot;777208853&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(53)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>52</td>
+															<td>Santhosh San</td>
+															<td>santhosh@gmail.com</td>
+															<td>+910988262888</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2020-01-20 08:17:10 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('52','santhosh@gmail.com','Santhosh','San')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;52&quot;,&quot;email&quot;:&quot;santhosh@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$HsXHtcLkx5YpmsWYD3XyPOMlx7fanGZ9wgAEPcGZ4lt2u1dFI4es2&quot;,&quot;salt&quot;:&quot;b94fd9f59861881883765ec41ca3869550ea19a2873b88c988efb4d38ccb96c7&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2020-01-20 08:17:10&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;52&quot;,&quot;first_name&quot;:&quot;Santhosh&quot;,&quot;last_name&quot;:&quot;San&quot;,&quot;phone&quot;:&quot;+910988262888&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;fmX0E3IFaN8:APA91bHnAPa7c22vBA_jT3UYX3kO2Wfs6gfKWtsTy8pIPUKOFOB2eLScqZxbl_QrsNL_4M8WOlunytMNRLKNjFlrELrbLw4mnJrFHgvhg5fhzkOMjZC9UGtS3tXiOaBoHRFSqSOJUCXG&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(52)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>51</td>
+															<td>Muthu Test</td>
+															<td>avmselvan@gmail.com</td>
+															<td>+27846743176</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2020-01-16 11:55:21 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('51','avmselvan@gmail.com','Muthu','Test')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;51&quot;,&quot;email&quot;:&quot;avmselvan@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$r3AYNPc8kP03c\/MbUGCpiuVo.mN0Gd9Veubn7IF7tP\/9R8xYB2e0e&quot;,&quot;salt&quot;:&quot;b05a792a5132644a9f624d09769139b600f04950e0a37c7dd0368cbe316f1881&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2020-01-16 11:55:21&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;51&quot;,&quot;first_name&quot;:&quot;Muthu&quot;,&quot;last_name&quot;:&quot;Test&quot;,&quot;phone&quot;:&quot;+27846743176&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;egNR_A0ZwUU:APA91bE85GXHa0hqcvhJQUE5ZbkGG7-cgZplyp-LuoBG6AsUeBgM0ZPBJpF2epqE5Y2XYV4RPGvOLYf6e9qJP96V7VqB3OZbz4GZic1G7E8eiSdKfPtqptc0WhVuqU9UpZpGvRYOUDqS&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(51)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>50</td>
+															<td>Logesh A</td>
+															<td>logeshrakul@gmail.com</td>
+															<td>+911223338494</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2020-01-09 11:13:52 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('50','logeshrakul@gmail.com','Logesh','A')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;50&quot;,&quot;email&quot;:&quot;logeshrakul@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$KZ\/qpcWFyFbQn0G3ImIWCumqJz395kGysMZ.UL6NicXIhMnpNpeHm&quot;,&quot;salt&quot;:&quot;bdc98a3a193021b512cb54ad483d1340ba4d75867a7a789fa27a9c90a547ac44&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2020-01-09 11:13:52&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;50&quot;,&quot;first_name&quot;:&quot;Logesh&quot;,&quot;last_name&quot;:&quot;A&quot;,&quot;phone&quot;:&quot;+911223338494&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;eg2wNCRe8dg:APA91bFEjJ2OQpKbvb5fpMXdEAGZW-WiJjBsRzglby9rTtTjsCGJAqqcj9EFHWYFQ4Cq3lY3BJjy_xY-W4sZcI9sBsVvEawjiE2L5eWU_iK04iS48UUtnEcfm9boGwwglPfKFZssc_xN&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(50)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>49</td>
+															<td>San San</td>
+															<td>san@mail.com</td>
+															<td>+910987654321</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2020-01-07 12:03:22 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('49','san@mail.com','San','San')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;49&quot;,&quot;email&quot;:&quot;san@mail.com&quot;,&quot;password&quot;:&quot;$2a$10$tglxZ75KnrhXu6AkTJ7QreVnyUCGYDdauu8q2.TMKLFOPyj\/Hc8Tu&quot;,&quot;salt&quot;:&quot;f123f331142419fec28ed151b9efbd330dd85f59b9ef0064650b26317cf07b6d&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2020-01-07 12:03:22&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;49&quot;,&quot;first_name&quot;:&quot;San&quot;,&quot;last_name&quot;:&quot;San&quot;,&quot;phone&quot;:&quot;+910987654321&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;fmX0E3IFaN8:APA91bHnAPa7c22vBA_jT3UYX3kO2Wfs6gfKWtsTy8pIPUKOFOB2eLScqZxbl_QrsNL_4M8WOlunytMNRLKNjFlrELrbLw4mnJrFHgvhg5fhzkOMjZC9UGtS3tXiOaBoHRFSqSOJUCXG&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(49)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>48</td>
+															<td>Jaya Logesh</td>
+															<td>jayalogesh35@gmail.com</td>
+															<td>+918667384577</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2020-01-07 11:51:23 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('48','jayalogesh35@gmail.com','Jaya','Logesh')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;48&quot;,&quot;email&quot;:&quot;jayalogesh35@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$Tg1hnwQzOKMBF6nkCkFjNuF\/00zsRomYh7sZ1jZbiIjgovSQ7cDwu&quot;,&quot;salt&quot;:&quot;bdc98a3a193021b512cb54ad483d1340ba4d75867a7a789fa27a9c90a547ac44&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2020-01-07 11:51:23&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;48&quot;,&quot;first_name&quot;:&quot;Jaya&quot;,&quot;last_name&quot;:&quot;Logesh&quot;,&quot;phone&quot;:&quot;+918667384577&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;cNfHKMdaswc:APA91bFPj7KBDqjVkQDj2YhVJdzwh2CzQAwrqNYzLh8Ae03AbK0cofpU2f80sr6znJY7lwuHnOu05PWvAwRRCQTO7cUN-XcblWWUbtp9iuQ7GIMHDpkQ19qO6oQX3dOZpTQ6wFXu6QrS&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(48)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>47</td>
+															<td>Naveen Kumar</td>
+															<td>naveenkumar70271@gmail.com</td>
+															<td>+919092931456</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2020-01-07 11:49:26 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('47','naveenkumar70271@gmail.com','Naveen','Kumar')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;47&quot;,&quot;email&quot;:&quot;naveenkumar70271@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$dJfkjMkJadufT5VHf6b5jOgSxUKSkuJxT\/rmg58KDtQo10f8tjfHu&quot;,&quot;salt&quot;:&quot;b05a792a5132644a9f624d09769139b600f04950e0a37c7dd0368cbe316f1881&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2020-01-07 11:49:26&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;47&quot;,&quot;first_name&quot;:&quot;Naveen&quot;,&quot;last_name&quot;:&quot;Kumar&quot;,&quot;phone&quot;:&quot;+919092931456&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;eg2wNCRe8dg:APA91bFEjJ2OQpKbvb5fpMXdEAGZW-WiJjBsRzglby9rTtTjsCGJAqqcj9EFHWYFQ4Cq3lY3BJjy_xY-W4sZcI9sBsVvEawjiE2L5eWU_iK04iS48UUtnEcfm9boGwwglPfKFZssc_xN&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(47)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>46</td>
+															<td>Pasta Man</td>
+															<td>pasta@pasta.com</td>
+															<td>9566865665</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-11-03 12:02:13 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('46','pasta@pasta.com','Pasta','Man')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;46&quot;,&quot;email&quot;:&quot;pasta@pasta.com&quot;,&quot;password&quot;:&quot;$2a$10$GtymJwzvRdGzbw5iIJ2vBOKaVjh2H01dDWWInVZOBOrQWXP4RGc.W&quot;,&quot;salt&quot;:&quot;b05a792a5132644a9f624d09769139b600f04950e0a37c7dd0368cbe316f1881&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-11-03 12:02:13&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;46&quot;,&quot;first_name&quot;:&quot;Pasta&quot;,&quot;last_name&quot;:&quot;Man&quot;,&quot;phone&quot;:&quot;9566865665&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(46)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>45</td>
+															<td>Sundar Bala</td>
+															<td>sundar@kumar.com</td>
+															<td>9959595955</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-10-02 01:04:40 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('45','sundar@kumar.com','Sundar','Bala')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;45&quot;,&quot;email&quot;:&quot;sundar@kumar.com&quot;,&quot;password&quot;:&quot;$2a$10$83Lv25\/rleoOb5nW2HQxru.1zKmFTM.2cUXUMFY\/XJlHS8oi5pkmG&quot;,&quot;salt&quot;:&quot;b05a792a5132644a9f624d09769139b600f04950e0a37c7dd0368cbe316f1881&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-10-02 13:04:40&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;45&quot;,&quot;first_name&quot;:&quot;Sundar&quot;,&quot;last_name&quot;:&quot;Bala&quot;,&quot;phone&quot;:&quot;9959595955&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(45)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>44</td>
+															<td>Sundar Balamurugan</td>
+															<td>Sundar@sundar.com</td>
+															<td>968475321</td>
+															<td>rider</td>
+															<td>Available</td>
+															<td>2019-10-01 11:00:40 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('44','Sundar@sundar.com','Sundar','Balamurugan')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;44&quot;,&quot;email&quot;:&quot;Sundar@sundar.com&quot;,&quot;password&quot;:&quot;$2y$10$PHOHjk0cHsw.27SDxu2qs.lGy8gYzOrIFAEbyTqko6a6dc.NNh4JK&quot;,&quot;salt&quot;:&quot;b05a792a5132644a9f624d09769139b600f04950e0a37c7dd0368cbe316f1881&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-10-01 11:00:40&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;rider&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;44&quot;,&quot;first_name&quot;:&quot;Sundar&quot;,&quot;last_name&quot;:&quot;Balamurugan&quot;,&quot;phone&quot;:&quot;968475321&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;Change Driver&quot;,&quot;device_token&quot;:&quot;d0R84xGrD2M:APA91bHk1ZkZsYWMYU_oXXtpF-Z6c1McAUOpywiJ3xXqy8gqDGASz9MDrH9vs_RgXY6Msl5KmtY5MSoWnrfo2uRndLWCMeDDOXQBckuptPnrq9IJGf1aVgXmCMt3PeDgJK81RodwcDEE&quot;,&quot;online&quot;:&quot;1&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(44)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>43</td>
+															<td>Raj Guhan</td>
+															<td>noq@noq.com</td>
+															<td>2798461663</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-09-30 01:59:28 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('43','noq@noq.com','Raj','Guhan')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;43&quot;,&quot;email&quot;:&quot;noq@noq.com&quot;,&quot;password&quot;:&quot;$2a$10$qezduLGgNiLXvDYb7\/Rczuu102p5bBvWFxtozYsuiOhXlu14pbdgK&quot;,&quot;salt&quot;:&quot;b05a792a5132644a9f624d09769139b600f04950e0a37c7dd0368cbe316f1881&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-09-30 13:59:28&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;43&quot;,&quot;first_name&quot;:&quot;Raj&quot;,&quot;last_name&quot;:&quot;Guhan&quot;,&quot;phone&quot;:&quot;2798461663&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(43)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>41</td>
+															<td>Bala Murugan</td>
+															<td>balamurugantp@yahoo.com</td>
+															<td></td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-09-29 10:23:02 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('41','balamurugantp@yahoo.com','Bala','Murugan')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;41&quot;,&quot;email&quot;:&quot;balamurugantp@yahoo.com&quot;,&quot;password&quot;:&quot;$2a$10$SKy03SxfSvS0NjYOaDxE9eyZONNWC46nMkcAGS1NaDqDqfMCDHMRC&quot;,&quot;salt&quot;:&quot;b05a792a5132644a9f624d09769139b600f04950e0a37c7dd0368cbe316f1881&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-09-29 10:23:02&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;41&quot;,&quot;first_name&quot;:&quot;Bala&quot;,&quot;last_name&quot;:&quot;Murugan&quot;,&quot;phone&quot;:&quot;&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(41)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>40</td>
+															<td>Smith Nicholas</td>
+															<td>churchc@admin.com</td>
+															<td>0278527946</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-09-28 01:38:52 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('40','churchc@admin.com','Smith','Nicholas')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;40&quot;,&quot;email&quot;:&quot;churchc@admin.com&quot;,&quot;password&quot;:&quot;$2a$10$BrIMOM6\/7D03.HME5hPcqOQ5YuoUGPk0OZvzC2PUr.bn8gpH5uahW&quot;,&quot;salt&quot;:&quot;f9ddfd269a567467fd9f814105c02096f72f4ca7f11dd72c57f3bad77d437a07&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-09-28 13:38:52&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;40&quot;,&quot;first_name&quot;:&quot;Smith&quot;,&quot;last_name&quot;:&quot;Nicholas&quot;,&quot;phone&quot;:&quot;0278527946&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(40)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>39</td>
+															<td>Leo Roger</td>
+															<td>cafecd@admin.com</td>
+															<td>0271346798</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-09-28 01:32:42 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('39','cafecd@admin.com','Leo','Roger')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;39&quot;,&quot;email&quot;:&quot;cafecd@admin.com&quot;,&quot;password&quot;:&quot;$2a$10$1ucqpCgbDV\/Y5vlP7ynHlen8MHbwoBvQMcifHVx6B9HUmjzlE9F\/2&quot;,&quot;salt&quot;:&quot;1afb1b5ded42dca1cb261cfd8b3fa590d648af6e116a573d9cff85c20b951958&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-09-28 13:32:42&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;39&quot;,&quot;first_name&quot;:&quot;Leo&quot;,&quot;last_name&quot;:&quot;Roger&quot;,&quot;phone&quot;:&quot;0271346798&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(39)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>38</td>
+															<td>William Marshall</td>
+															<td>dominos@admin.com</td>
+															<td>027546897</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-09-28 01:17:18 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('38','dominos@admin.com','William','Marshall')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;38&quot;,&quot;email&quot;:&quot;dominos@admin.com&quot;,&quot;password&quot;:&quot;$2a$10$uSMv5EMt9MSIWZ6Lg1AzFebQiZUq26hGo.\/g1WLZp9dM8nDM.yREq&quot;,&quot;salt&quot;:&quot;1ba6e580b31234614651b68eda33ad684124acbb158bd3f565ac2bbbe999bf09&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-09-28 13:17:18&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;38&quot;,&quot;first_name&quot;:&quot;William&quot;,&quot;last_name&quot;:&quot;Marshall&quot;,&quot;phone&quot;:&quot;027546897&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(38)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>37</td>
+															<td>Michael Myers</td>
+															<td>burgerking@admin.com</td>
+															<td>0274932514</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-09-28 12:59:09 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('37','burgerking@admin.com','Michael','Myers')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;37&quot;,&quot;email&quot;:&quot;burgerking@admin.com&quot;,&quot;password&quot;:&quot;$2a$10$IVW8PFP0W6xnXAshq4HZ7eEyoDHwkE\/cOSXm4CU2O4ZcqGPZHAvT.&quot;,&quot;salt&quot;:&quot;a2ed61578717712f64f44850df2edf54e6783decb428859c548ac9ceb46f1d28&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-09-28 12:59:09&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;37&quot;,&quot;first_name&quot;:&quot;Michael&quot;,&quot;last_name&quot;:&quot;Myers&quot;,&quot;phone&quot;:&quot;0274932514&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(37)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>36</td>
+															<td>Joseph Hamon</td>
+															<td>macdonald@admin.com</td>
+															<td>0277575757</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-09-28 12:39:52 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('36','macdonald@admin.com','Joseph','Hamon')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;36&quot;,&quot;email&quot;:&quot;macdonald@admin.com&quot;,&quot;password&quot;:&quot;$2a$10$LcnsHHA9sDPT8e9T6XKn2eXCaf0VcHHg4PJypvj3JnvmT1awdnjRm&quot;,&quot;salt&quot;:&quot;55470c66fee6734d0ba082c1c87516b30d2b6969c407fda3b80e64e317cfbfef&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-09-28 12:39:52&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;36&quot;,&quot;first_name&quot;:&quot;Joseph&quot;,&quot;last_name&quot;:&quot;Hamon&quot;,&quot;phone&quot;:&quot;0277575757&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(36)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>35</td>
+															<td>Jorian Ponomareff</td>
+															<td>cafecoffeeday@admin.com</td>
+															<td>0275288818</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-09-28 12:19:59 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('35','cafecoffeeday@admin.com','Jorian','Ponomareff')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;35&quot;,&quot;email&quot;:&quot;cafecoffeeday@admin.com&quot;,&quot;password&quot;:&quot;$2a$10$OT391sflfdVGxtez.7QyaeFvmeLAJpLmp1Gf7fXBD18CW9lzs9BuK&quot;,&quot;salt&quot;:&quot;e83114764b5542c49d9d90d6dc31ab7999bc767263bc93c9dc82ba5d3cb49927&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-09-28 12:19:59&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;35&quot;,&quot;first_name&quot;:&quot;Jorian&quot;,&quot;last_name&quot;:&quot;Ponomareff&quot;,&quot;phone&quot;:&quot;0275288818&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(35)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>34</td>
+															<td>Francis Xavier </td>
+															<td>churchschicken@admin.com</td>
+															<td>0275355252</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-09-28 12:12:23 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('34','churchschicken@admin.com','Francis','Xavier ')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;34&quot;,&quot;email&quot;:&quot;churchschicken@admin.com&quot;,&quot;password&quot;:&quot;$2a$10$i0GO92BfNE5lGQQ\/Nl4cau7cK6pd35J43I0bzrSG3imFxR8LaUvhK&quot;,&quot;salt&quot;:&quot;7ccd23ea97ec9f931e6e926049050a9e7a3642dbe3377010e5eaeddec6187e6a&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-09-28 12:12:23&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;34&quot;,&quot;first_name&quot;:&quot;Francis&quot;,&quot;last_name&quot;:&quot;Xavier &quot;,&quot;phone&quot;:&quot;0275355252&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(34)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>33</td>
+															<td>Jonathan Osteen</td>
+															<td>chicking@admin.com</td>
+															<td>0274172425</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-09-28 11:59:50 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('33','chicking@admin.com','Jonathan','Osteen')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;33&quot;,&quot;email&quot;:&quot;chicking@admin.com&quot;,&quot;password&quot;:&quot;$2a$10$0AWzM0kBhhGL6m0Sqbj3q.pXcE8WrYdC7WwSeA.b9DEldPaawK9fW&quot;,&quot;salt&quot;:&quot;169471b851d14992e0b79ee0f6b0559abb56e6883f86743ee03cfad89218bd62&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-09-28 11:59:50&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;33&quot;,&quot;first_name&quot;:&quot;Jonathan&quot;,&quot;last_name&quot;:&quot;Osteen&quot;,&quot;phone&quot;:&quot;0274172425&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(33)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>32</td>
+															<td>Moses Joel</td>
+															<td>me@admin.com</td>
+															<td>0275647548</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-09-28 11:52:24 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('32','me@admin.com','Moses','Joel')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;32&quot;,&quot;email&quot;:&quot;me@admin.com&quot;,&quot;password&quot;:&quot;$2a$10$Uqz8u5HHebEu3u2oJ4FlEe3cWKN25oJyHwxdGu8nX\/cdxv.DXw7qi&quot;,&quot;salt&quot;:&quot;7b602350048f310c5b621ee3f6b6ad4fa760bb808d8076a030ee608e3494d0e4&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-09-28 11:52:24&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;32&quot;,&quot;first_name&quot;:&quot;Moses&quot;,&quot;last_name&quot;:&quot;Joel&quot;,&quot;phone&quot;:&quot;0275647548&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(32)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>31</td>
+															<td>John Mathew</td>
+															<td>kfc@admin.com</td>
+															<td>0279999266</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-09-28 11:40:33 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('31','kfc@admin.com','John','Mathew')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;31&quot;,&quot;email&quot;:&quot;kfc@admin.com&quot;,&quot;password&quot;:&quot;$2a$10$V4tL5IgTOf.Scqcz0CJbfeYmDL4bfFJLqcB3LYHpvGg.aDgyk7\/5C&quot;,&quot;salt&quot;:&quot;eb5169c349019a7940c3aaa1836afe5b4384884998d2a219ab5e1c05934c6208&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-09-28 11:40:33&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;31&quot;,&quot;first_name&quot;:&quot;John&quot;,&quot;last_name&quot;:&quot;Mathew&quot;,&quot;phone&quot;:&quot;0279999266&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(31)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>30</td>
+															<td>Sundar B</td>
+															<td>sundarbala22radson@gmail.com</td>
+															<td>9842259924</td>
+															<td>hotel</td>
+															<td>NULL</td>
+															<td>2019-09-28 10:39:41 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('30','sundarbala22radson@gmail.com','Sundar','B')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;30&quot;,&quot;email&quot;:&quot;sundarbala22radson@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$k.XXmNyPVNz79KOb2Bv9gOH2JARwMmM1kO44s\/nOzwD\/Oen1co52G&quot;,&quot;salt&quot;:&quot;29749a9b707cfdb65060ff7fe396ca127f8d23956f76a308028fdbe07f82d0ba&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-09-28 10:39:41&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;30&quot;,&quot;first_name&quot;:&quot;Sundar&quot;,&quot;last_name&quot;:&quot;B&quot;,&quot;phone&quot;:&quot;9842259924&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(30)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>29</td>
+															<td>John Smith</td>
+															<td>feezixora@gmail.com</td>
+															<td>+91815188189484</td>
+															<td>user</td>
+															<td>NULL</td>
+															<td>2019-02-28 07:20:21 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('29','feezixora@gmail.com','John','Smith')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;29&quot;,&quot;email&quot;:&quot;feezixora@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$FLb8Nxg35DtKxh1pTTj78.fLskHZl.I9SCMdtCEb\/qPB6zz2t\/STW&quot;,&quot;salt&quot;:&quot;c45c21c20409dac55cbae28d73522d28e89e56e99da261e70067da1e2618b31a&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-28 19:20:21&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;29&quot;,&quot;first_name&quot;:&quot;John&quot;,&quot;last_name&quot;:&quot;Smith&quot;,&quot;phone&quot;:&quot;+91815188189484&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(29)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>28</td>
+															<td>Puja Bis</td>
+															<td>puja@gmail.com</td>
+															<td>+928763030808</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-28 04:53:36 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('28','puja@gmail.com','Puja','Bis')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;28&quot;,&quot;email&quot;:&quot;puja@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$01MHcwmCd1hTty1dSgzaYuR42u4eBoYyqRAJx8NmVEkq1eY9sgC9S&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-28 04:53:36&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;28&quot;,&quot;first_name&quot;:&quot;Puja&quot;,&quot;last_name&quot;:&quot;Bis&quot;,&quot;phone&quot;:&quot;+928763030808&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;fasQAoo65Es:APA91bHZP41f2ToGcHh9THiJMiZox9jP3g_o791GrbChYtZWoSQhXuSkNVSblK-SF2eYfCgdLW4yeYeFRnrxlR6S6eXTqlpiAK-r1u4iQfgQP06Ce-G501yhuygUuamKMPHbFKrki67F&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(28)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>27</td>
+															<td>Abdul Rozak</td>
+															<td>rozak@rodex.org</td>
+															<td>+927378838888</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-28 04:24:47 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('27','rozak@rodex.org','Abdul','Rozak')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;27&quot;,&quot;email&quot;:&quot;rozak@rodex.org&quot;,&quot;password&quot;:&quot;$2a$10$\/.qdu3uCknDPbT.JiwK.1uYbZ\/bDGU5ubcU\/oCATDSWLAksljhHqS&quot;,&quot;salt&quot;:&quot;49a5606253f71561ed453df8380bee6cf72d7ea86e2be9e1b03cb38c536080f5&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-28 04:24:47&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;27&quot;,&quot;first_name&quot;:&quot;Abdul&quot;,&quot;last_name&quot;:&quot;Rozak&quot;,&quot;phone&quot;:&quot;+927378838888&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;123&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(27)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>26</td>
+															<td>Demos Alfredo</td>
+															<td>demo@none.com</td>
+															<td>+912025825800</td>
+															<td>user</td>
+															<td>NULL</td>
+															<td>2019-02-28 04:21:07 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('26','demo@none.com','Demos','Alfredo')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;26&quot;,&quot;email&quot;:&quot;demo@none.com&quot;,&quot;password&quot;:&quot;$2a$10$sba7E63U9uJRwSAuVwXmoeuYYZ9c\/8f608knmYZF33oTDkzxUmyHa&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-28 04:21:07&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;26&quot;,&quot;first_name&quot;:&quot;Demos&quot;,&quot;last_name&quot;:&quot;Alfredo&quot;,&quot;phone&quot;:&quot;+912025825800&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(26)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>25</td>
+															<td>Test Test</td>
+															<td>test@qq.com</td>
+															<td>+921233541233</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-28 12:20:23 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('25','test@qq.com','Test','Test')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;25&quot;,&quot;email&quot;:&quot;test@qq.com&quot;,&quot;password&quot;:&quot;$2a$10$Z9yLqCCLFXbL9vJ7V3fSS.qamtmKIE16fWbN6a9b\/ZzqJn12bV\/\/S&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-28 00:20:23&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;25&quot;,&quot;first_name&quot;:&quot;Test&quot;,&quot;last_name&quot;:&quot;Test&quot;,&quot;phone&quot;:&quot;+921233541233&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;fQl_zMtD6bk:APA91bF2EhCtXu1VRQhKDr2TSZgDpK5W8SxrCCmjV3TbtOBxf6K9mbgwVNAa7Jj1045cYkvXCPkDVphzjYB7uhzhj7VJgq8hb4fM2QGWyuSj9MrHo6nNh6Igog2o-fQHr401wZkPYIKs&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(25)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>24</td>
+															<td>Nowf Sal</td>
+															<td>abcd@nowf.com</td>
+															<td>+15194429111</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-27 07:29:30 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('24','abcd@nowf.com','Nowf','Sal')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;24&quot;,&quot;email&quot;:&quot;abcd@nowf.com&quot;,&quot;password&quot;:&quot;$2a$10$Q0imqg5FpkRLFyJaDfgIbOSKwtzQnKBzyBEEETXbITz0efJLFQn5m&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-27 07:29:30&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;24&quot;,&quot;first_name&quot;:&quot;Nowf&quot;,&quot;last_name&quot;:&quot;Sal&quot;,&quot;phone&quot;:&quot;+15194429111&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;eXLMd9U1SXc:APA91bEJIJA4i3Rtq5RDtKjCoBfcsRsD5GL85Mt-fg5ZcbJRjeh9eHAgm3j2POaQtoJjkYGD5HgnxZF_OtpVn2kmHaHmcTqSWhZ7zYLlUHGdzHQfE9mLAQa9UAmcnJQG25eYYIm_3exw&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(24)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>23</td>
+															<td>Hashin Mohd.</td>
+															<td>hashin888@gmail.com</td>
+															<td>+15194429111</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-27 07:27:11 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('23','hashin888@gmail.com','Hashin','Mohd.')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;23&quot;,&quot;email&quot;:&quot;hashin888@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$ntF552sSD5NFw4cWfPmcpedyHIMi9yw5pVE2JYYfdKyRciXAr5H6K&quot;,&quot;salt&quot;:&quot;ec3cc80ed9b8977d4de10863438ce621c71cb53be96f9a4f1bc473c0b6f82d35&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-27 07:27:11&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;23&quot;,&quot;first_name&quot;:&quot;Hashin&quot;,&quot;last_name&quot;:&quot;Mohd.&quot;,&quot;phone&quot;:&quot;+15194429111&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;ePrextkK0Dc:APA91bHrzsGwtudGETAZ8KiEDUmHVGNg59USpWEcoagphC8Vkyz_wGdGy9V6wcTQ6Zx4wrfDSrlJKpRmfLzTif-kfLt4GZtIpzTbgARu6tWlRSer5QfqBPHA65x6njq8v2L_K0eHnJy0&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(23)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>22</td>
+															<td>Brian Fowler-adams</td>
+															<td>ba196111@ohio.edu</td>
+															<td>+18184153145</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-26 08:48:23 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('22','ba196111@ohio.edu','Brian','Fowler-adams')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;22&quot;,&quot;email&quot;:&quot;ba196111@ohio.edu&quot;,&quot;password&quot;:&quot;$2a$10$09ICO0LdN6CsspEoshSSDePCqO60VZru\/.nzg1QXMQ3wDkKoIkf\/6&quot;,&quot;salt&quot;:&quot;85654ff59e3c78e8802934f52ea5faf9aa7fbee29aa507634b572fe1f270c2c9&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-26 20:48:23&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;22&quot;,&quot;first_name&quot;:&quot;Brian&quot;,&quot;last_name&quot;:&quot;Fowler-adams&quot;,&quot;phone&quot;:&quot;+18184153145&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;d85ygY1IEnw:APA91bEXDhK09iK1n871-ZgWVNX-HyZ4E6qpdIEItr2SKKH0uAwhj9edXt3aHEtdo01GHzKSYmY7kb2JQ_AJOgXwR8pb_G4cneH5-ctO90b_qbz3Wct5u-hqdQXbVDHONnEDzTbCJCx8&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(22)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>21</td>
+															<td>First  Last</td>
+															<td>get_michael10@yahoo.com</td>
+															<td>+921913661959</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-26 06:29:41 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('21','get_michael10@yahoo.com','First ','Last')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;21&quot;,&quot;email&quot;:&quot;get_michael10@yahoo.com&quot;,&quot;password&quot;:&quot;$2a$10$9\/dARmPeToK\/uSMJqLNBku20ILfv0oB5AwXDoNDL8QOf9Ad9YNf\/S&quot;,&quot;salt&quot;:&quot;a1aaf4526914f36e7de9ce2f3875bc5c9e28007719fbde9e16edb388f690b116&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-26 18:29:41&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;21&quot;,&quot;first_name&quot;:&quot;First &quot;,&quot;last_name&quot;:&quot;Last&quot;,&quot;phone&quot;:&quot;+921913661959&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;123&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(21)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>20</td>
+															<td>Ajay Kumar</td>
+															<td>ajay@gmail.com</td>
+															<td>+19876543210</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-26 07:46:12 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('20','ajay@gmail.com','Ajay','Kumar')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;20&quot;,&quot;email&quot;:&quot;ajay@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$1nMKAfxhkyiith7IjsVmjuGPUtzECZNIcQIsV7SHvDnZVyZ2q7RNy&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-26 07:46:12&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;20&quot;,&quot;first_name&quot;:&quot;Ajay&quot;,&quot;last_name&quot;:&quot;Kumar&quot;,&quot;phone&quot;:&quot;+19876543210&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;123&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(20)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>19</td>
+															<td>Mateus Guedes</td>
+															<td>teucte@gmail.com</td>
+															<td>+927799991288</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-26 05:11:36 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('19','teucte@gmail.com','Mateus','Guedes')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;19&quot;,&quot;email&quot;:&quot;teucte@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$acHNMdfsWrmWQai2739a..f18H1oa76QohlkDs81OPMobWL5jvUuG&quot;,&quot;salt&quot;:&quot;d428f86b17751fc7448f6ade9cd3b063eefd244873fbfe0cba4808a70516a36b&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-26 05:11:36&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;19&quot;,&quot;first_name&quot;:&quot;Mateus&quot;,&quot;last_name&quot;:&quot;Guedes&quot;,&quot;phone&quot;:&quot;+927799991288&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;123&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(19)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>18</td>
+															<td>Vittrine Vip</td>
+															<td>hostbdc2016@gmail.com</td>
+															<td>+929999198759</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-25 03:47:55 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('18','hostbdc2016@gmail.com','Vittrine','Vip')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;18&quot;,&quot;email&quot;:&quot;hostbdc2016@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$HoTxfFjAqYQX2MRP381Xb.F4JMBnOcRJJA.bmTZWP4B\/LbHZaXT8.&quot;,&quot;salt&quot;:&quot;0fb4efdbdf2b0728a86043d8194d097ab564196cab55aa4bfc82427d956d0c80&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-25 15:47:55&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;18&quot;,&quot;first_name&quot;:&quot;Vittrine&quot;,&quot;last_name&quot;:&quot;Vip&quot;,&quot;phone&quot;:&quot;+929999198759&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;123&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(18)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>17</td>
+															<td>Chaves Oliveira</td>
+															<td>tv.vittrine@gmail.com</td>
+															<td>+19999999999</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-25 03:09:11 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('17','tv.vittrine@gmail.com','Chaves','Oliveira')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;17&quot;,&quot;email&quot;:&quot;tv.vittrine@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$EhZzkevOR.qctuS0TRuJuOUs1zMSSKSenUsWWoGe4DkMuJFbXa3c2&quot;,&quot;salt&quot;:&quot;0fb4efdbdf2b0728a86043d8194d097ab564196cab55aa4bfc82427d956d0c80&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-25 15:09:11&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;17&quot;,&quot;first_name&quot;:&quot;Chaves&quot;,&quot;last_name&quot;:&quot;Oliveira&quot;,&quot;phone&quot;:&quot;+19999999999&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;123&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(17)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>16</td>
+															<td>John Smkth</td>
+															<td>mukeshtricks4you@gmail.com</td>
+															<td>+929963214539</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-25 10:19:47 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('16','mukeshtricks4you@gmail.com','John','Smkth')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;16&quot;,&quot;email&quot;:&quot;mukeshtricks4you@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$2EbHOc4XdMxqe4aO6uZ5yOhP02DXV3cnMVd.vGx6F.uarQSbT4OU2&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-25 10:19:47&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;16&quot;,&quot;first_name&quot;:&quot;John&quot;,&quot;last_name&quot;:&quot;Smkth&quot;,&quot;phone&quot;:&quot;+929963214539&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;fLH9gFMofXU:APA91bEzooOdRZhEKn_ePwbvyj5kotT0-HeUj7xFNj6wGVckFOIR6DdL4AyzakkJPw9EkMzH5yWjKGKAS7_5WXjMTQhGd203YMAbMHFvvs0DzXcsG5OrHCA9K7a6CA5m2ey6UO_HlQgx&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(16)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>15</td>
+															<td>Mridul Ahamed</td>
+															<td>ahamedmridul@yahoo.in</td>
+															<td>+929830440996</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-22 07:00:20 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('15','ahamedmridul@yahoo.in','Mridul','Ahamed')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;15&quot;,&quot;email&quot;:&quot;ahamedmridul@yahoo.in&quot;,&quot;password&quot;:&quot;$2a$10$knbl3yLhARAAVnzD0hlEFO7FFSWTTZZFBp\/NW7SSA.nPy7.2zsxby&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-22 19:00:20&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;15&quot;,&quot;first_name&quot;:&quot;Mridul&quot;,&quot;last_name&quot;:&quot;Ahamed&quot;,&quot;phone&quot;:&quot;+929830440996&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;123&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(15)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>14</td>
+															<td>Dada Dada</td>
+															<td>dada@gmail.com</td>
+															<td>+921111111111</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-22 04:17:33 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('14','dada@gmail.com','Dada','Dada')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;14&quot;,&quot;email&quot;:&quot;dada@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$Lv5wxcRFucvJuagbhlXlnetiSOX9Q1Cn0LVBhVTJtWt8SKeqSSHBa&quot;,&quot;salt&quot;:&quot;7682803b3a1ad736874bb584782e47dec76dfd1094e2741fea403db1bf0085c6&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-22 16:17:33&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;14&quot;,&quot;first_name&quot;:&quot;Dada&quot;,&quot;last_name&quot;:&quot;Dada&quot;,&quot;phone&quot;:&quot;+921111111111&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;eeuxWwUy72U:APA91bGZOC5hzynYRmXYzFYUyybJDIOJ9tA8ie65LVF_FRROnO-KC6ABIlSBNLWmCgsq3Q0v7ktN2egOeUwbt5jylxi2spIpcygJz4uK-Hvdz2hozqD3SaMLKph4PdE-suGZHsfcWpxo&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(14)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>13</td>
+															<td>Uan Ex3</td>
+															<td>uanex3@gmail.com</td>
+															<td>+923037616341</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-22 09:13:33 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('13','uanex3@gmail.com','Uan','Ex3')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;13&quot;,&quot;email&quot;:&quot;uanex3@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$myjO1tVyMAe54mHC4xhfze1pJJiE6QvmXOq49FLOR6tVxjaF.XOOK&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-22 09:13:33&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;13&quot;,&quot;first_name&quot;:&quot;Uan&quot;,&quot;last_name&quot;:&quot;Ex3&quot;,&quot;phone&quot;:&quot;+923037616341&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;fH0xp4hla3U:APA91bFGfyyAJt_AG4Q2JwkRSloC9vyT_fT7GG-QfKMob6vYZMxZBTci_2s5RQY_8bePg7WuNtCfmy2-NOeTfMNH-G3SXTsUqQCg_wMXuYueviUDcH-A4rFsktdODcL06cnKM08ytZ90&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(13)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>12</td>
+															<td>Haha Baba</td>
+															<td>hahhaa@jaja.ja</td>
+															<td>+1212121212121</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-22 09:12:24 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('12','hahhaa@jaja.ja','Haha','Baba')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;12&quot;,&quot;email&quot;:&quot;hahhaa@jaja.ja&quot;,&quot;password&quot;:&quot;$2a$10$KWMuYOrnF5\/qnw.wFiv7ee9DG14GwHge0rRIisFKZSKz66BwpA9mO&quot;,&quot;salt&quot;:&quot;feeab68f18b3ce051f44bce590acc6ce3ec7b65b4541504f2239685fd75f6b58&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-22 09:12:24&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;12&quot;,&quot;first_name&quot;:&quot;Haha&quot;,&quot;last_name&quot;:&quot;Baba&quot;,&quot;phone&quot;:&quot;+1212121212121&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;fMKJJXCBkIY:APA91bHz0SpPjcw5ACLJgjw7GJaVOixGFOaLcIzgGWtZovMrhmoXaifY8FlUvJo-Wyu-cwP4VB9xzwMiGSdbpGIFN2fwwiWtrz9z9U97BsXhVlBIWvm-cldqZh3QqJIlxU2PxNHYLvnc&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(12)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>11</td>
+															<td>Ajay Madaan</td>
+															<td>ajaymadaan43382@gmail.com</td>
+															<td>+19876543210</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-22 07:24:00 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('11','ajaymadaan43382@gmail.com','Ajay','Madaan')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;11&quot;,&quot;email&quot;:&quot;ajaymadaan43382@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$.btjyEvYhWiGEBOMvHk.GOStYoHsOA5LTbfvLGRB0V34UX8keQTRO&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-22 07:24:00&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;11&quot;,&quot;first_name&quot;:&quot;Ajay&quot;,&quot;last_name&quot;:&quot;Madaan&quot;,&quot;phone&quot;:&quot;+19876543210&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;eEAIDHwZIVI:APA91bE2TBNIYAL2TYSCpcfc6mg5B22Zi777SlFMPPysTUbHwHO3TFG9_51Q43mN9dEWkLY9tuKoq6geu8irYEp7BG5TD5RqpS7bqWM4iBX_Hptr1MDk5_k4a_pvj0UVZwiLTMmJ8jtX&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(11)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>10</td>
+															<td>Clique Cidades</td>
+															<td>cliquecidades@gmail.com</td>
+															<td>+920739818111</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-22 12:03:05 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('10','cliquecidades@gmail.com','Clique','Cidades')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;10&quot;,&quot;email&quot;:&quot;cliquecidades@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$Ly7OhEL\/2eBuvcbO\/m5KaeM1ry92LPyw13EsIkv6RuRHdwb4Cie4e&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-22 00:03:05&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;10&quot;,&quot;first_name&quot;:&quot;Clique&quot;,&quot;last_name&quot;:&quot;Cidades&quot;,&quot;phone&quot;:&quot;+920739818111&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;cg-ds_8sVzs:APA91bG0MB-Vyeoe95F_tNW-n_PRmjbR1bknAorKb1jnMlsRHvAILNDN6h-t0Ntuug6QLzv2z5amcLO-Fz1WyUhKMCKUzPMZ_Y07eaGbyypL6RtXbBs2VMJHaHHvVnRBWRfbNf0B73c6&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(10)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>9</td>
+															<td>Marcos Santos</td>
+															<td>chillimarcos@gmail.com</td>
+															<td>+928199758084</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-21 09:09:47 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('9','chillimarcos@gmail.com','Marcos','Santos')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;9&quot;,&quot;email&quot;:&quot;chillimarcos@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$w2BnoiYZBbl00XhHqgT8ye5tZvpownT57Uk6uq\/wxjXsvVNqAScXW&quot;,&quot;salt&quot;:&quot;2cb6f7a5b348dc1c74e18a93cbc9ea793845132184f148a264219084eecdf7c8&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-21 21:09:47&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;9&quot;,&quot;first_name&quot;:&quot;Marcos&quot;,&quot;last_name&quot;:&quot;Santos&quot;,&quot;phone&quot;:&quot;+928199758084&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;e3zRI8qndIA:APA91bGUqAQJ1wod7VdJxon0dYcpksPw5p3WQK37EBPYeqZRuSxFnMuTjUjocWCmBaWGMcXJ7QHJhWpvWcWY8RnC5T-l7G5njK-UT7-vHu4pkS2by7GTSoByEZ9meURI9HjR_CKrVh2d&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(9)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>8</td>
+															<td>Alan Garcia</td>
+															<td>agarciaxy@gmail.com</td>
+															<td>+927712797482</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-21 04:26:45 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('8','agarciaxy@gmail.com','Alan','Garcia')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;8&quot;,&quot;email&quot;:&quot;agarciaxy@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$2GVOUlXYsUMJyUHwY4z3iuuZRme3DBGDXzoAazKtGgfym4s6WPib2&quot;,&quot;salt&quot;:&quot;71062e31b957384e5ae02149fcfd302a8516b8bef6523c2a514977472b8d7b2c&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-21 16:26:45&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;8&quot;,&quot;first_name&quot;:&quot;Alan&quot;,&quot;last_name&quot;:&quot;Garcia&quot;,&quot;phone&quot;:&quot;+927712797482&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;123&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(8)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>7</td>
+															<td>Ariel Soto</td>
+															<td>lopetoms@gmail.com</td>
+															<td>+929635002545</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-21 11:29:35 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('7','lopetoms@gmail.com','Ariel','Soto')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;7&quot;,&quot;email&quot;:&quot;lopetoms@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$IrK26oETB\/nRlafCb8VXte0EhrZ\/HYxKgOHPL.5IizOs449xLsNzC&quot;,&quot;salt&quot;:&quot;c45c21c20409dac55cbae28d73522d28e89e56e99da261e70067da1e2618b31a&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-21 11:29:35&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;7&quot;,&quot;first_name&quot;:&quot;Ariel&quot;,&quot;last_name&quot;:&quot;Soto&quot;,&quot;phone&quot;:&quot;+929635002545&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;123&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(7)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>6</td>
+															<td>Rao venu</td>
+															<td>mudassarrao5@gmail.com</td>
+															<td>+923357382933</td>
+															<td>user</td>
+															<td>NULL</td>
+															<td>2019-02-19 11:03:03 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('6','mudassarrao5@gmail.com','Rao','venu')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;6&quot;,&quot;email&quot;:&quot;mudassarrao5@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$2LYN8SttXmYXUUFneOFUr.\/HoanxTo1xXYWwlgo0QIZnC3olVG.ea&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-19 11:03:03&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;6&quot;,&quot;first_name&quot;:&quot;Rao&quot;,&quot;last_name&quot;:&quot;venu&quot;,&quot;phone&quot;:&quot;+923357382933&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(6)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>5</td>
+															<td>Jason Roy</td>
+															<td>raomudassar5@gmail.com</td>
+															<td>+923357382933</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-19 10:01:47 AM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('5','raomudassar5@gmail.com','Jason','Roy')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;5&quot;,&quot;email&quot;:&quot;raomudassar5@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$edBlXR5yHSxys7HhE4WRP.OPmlMSdyFEK0W55sU4Hvp7UHd\/KNnSK&quot;,&quot;salt&quot;:&quot;5fcd4bd324d7c27a9be000334fff640b7947a5d2b792ca74156ef6115bd3b895&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-19 10:01:47&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;5&quot;,&quot;first_name&quot;:&quot;Jason&quot;,&quot;last_name&quot;:&quot;Roy&quot;,&quot;phone&quot;:&quot;+923357382933&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;fhTho_3JCSA:APA91bF6XcmY_UsStY9QGiSbyOPL3ZclMYWXpGX3s5DXsXGti8SZvhtqkyS63-84JdelrIevTSKwH20vmVCoeQ-cc2Gqyf8-et4VGukTCF2ZdxzL8vfy8Qz2AIXCbvJ1MdwpCDH-5ynO&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(5)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>4</td>
+															<td>John Smith</td>
+															<td>user@gmail.com</td>
+															<td>+923137370772</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-07 09:37:22 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('4','user@gmail.com','John','Smith')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;4&quot;,&quot;email&quot;:&quot;user@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$IHQ8tmGXUAjLFRIJ8OiXF.kisp3Q7vm76uT8jz7bEWdJUIPMfCSsC&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-07 21:37:22&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;4&quot;,&quot;first_name&quot;:&quot;John&quot;,&quot;last_name&quot;:&quot;Smith&quot;,&quot;phone&quot;:&quot;+923137370772&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;fMKJJXCBkIY:APA91bHz0SpPjcw5ACLJgjw7GJaVOixGFOaLcIzgGWtZovMrhmoXaifY8FlUvJo-Wyu-cwP4VB9xzwMiGSdbpGIFN2fwwiWtrz9z9U97BsXhVlBIWvm-cldqZh3QqJIlxU2PxNHYLvnc&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(4)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>3</td>
+															<td>Susheel Nageshwaran</td>
+															<td>Susheel@radssoon.com</td>
+															<td>+923037616341</td>
+															<td>user</td>
+															<td>Available</td>
+															<td>2019-02-07 12:43:37 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('3','Susheel@radssoon.com','Susheel','Nageshwaran')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;3&quot;,&quot;email&quot;:&quot;Susheel@radssoon.com&quot;,&quot;password&quot;:&quot;$2a$10$CUVlspynr6CwsJh2x9zxMO50.aSZFr1fsC81.Z6sz\/wC548IW\/pou&quot;,&quot;salt&quot;:&quot;b05a792a5132644a9f624d09769139b600f04950e0a37c7dd0368cbe316f1881&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-07 12:43:37&quot;,&quot;token&quot;:null,&quot;role&quot;:&quot;user&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;3&quot;,&quot;first_name&quot;:&quot;Susheel&quot;,&quot;last_name&quot;:&quot;Nageshwaran&quot;,&quot;phone&quot;:&quot;+923037616341&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;ddHJeDbfmvc:APA91bEDj5M9KXtB1-FkB3qBHX8p77vnGC4oNpwEj3-Ry9XlUHRWOB_GQaXyAMR6fg2FVBS9VvhktOdt6NMgLGwuxuaSlui7mibM2UJ9GUXtrD5Kn0_3jb4dMH-neS7tMZ90Pg1wNobA&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(3)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>2</td>
+															<td>john smith</td>
+															<td>scoma@gmail.com</td>
+															<td>98765434567</td>
+															<td>hotel</td>
+															<td>Available</td>
+															<td>2019-02-07 12:14:29 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('2','scoma@gmail.com','john','smith')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;2&quot;,&quot;email&quot;:&quot;scoma@gmail.com&quot;,&quot;password&quot;:&quot;$2a$10$l7aCtU697TK4kFxVCzsq1eOKO3qaR\/JTqeA4.\/ORRXvUKsHKU2Xwq&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-07 12:14:29&quot;,&quot;token&quot;:&quot;&quot;,&quot;role&quot;:&quot;hotel&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;2&quot;,&quot;first_name&quot;:&quot;john&quot;,&quot;last_name&quot;:&quot;smith&quot;,&quot;phone&quot;:&quot;98765434567&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;f3XESmQpbus:APA91bGKGNKDRvMsBLdvmhxrHKWwHYR9cUhspEPVBnX3dUPRI1og9PHBiMzzvbNU2HwndJCCOnzMMK4M4LjXFZvFN4P-x4HfBOJzu6rP5Q4imngfVrv6fkjG3fRhTERW4KSEfOt3l-wu&quot;,&quot;online&quot;:&quot;0&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(2)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														<tr>
+															<td>1</td>
+															<td> </td>
+															<td>rider@gmail.com</td>
+															<td>03111222777</td>
+															<td>rider</td>
+															<td>Available</td>
+															<td>2019-02-06 07:52:36 PM</td>                                                            
+                                                            <td>
+                                                                <a class='btn btn-default btn-sm' 
+        onClick="editUserProfile('1','rider@gmail.com','','')" style='cursor:pointer;' >Edit User</a>
+                                                                 
+                                                                <a href='javascript:;' onClick='getuser_details({&quot;User&quot;:{&quot;id&quot;:&quot;1&quot;,&quot;email&quot;:&quot;rider@gmail.com&quot;,&quot;password&quot;:&quot;$2y$10$gckqVCsW4E36EI0sYcYUoO0H.r7sffKS9KoWNnHdSHFGnEitauLGu&quot;,&quot;salt&quot;:&quot;ff5baee747ab2e9c9b29cf6a133215239208bda00c00aa5cf60d368bd5ba03f2&quot;,&quot;active&quot;:&quot;1&quot;,&quot;block&quot;:&quot;0&quot;,&quot;created&quot;:&quot;2019-02-06 19:52:36&quot;,&quot;token&quot;:&quot;&quot;,&quot;role&quot;:&quot;rider&quot;},&quot;UserInfo&quot;:{&quot;user_id&quot;:&quot;1&quot;,&quot;first_name&quot;:&quot;&quot;,&quot;last_name&quot;:&quot;&quot;,&quot;phone&quot;:&quot;03111222777&quot;,&quot;profile_img&quot;:&quot;&quot;,&quot;note&quot;:&quot;&quot;,&quot;device_token&quot;:&quot;fQl_zMtD6bk:APA91bF2EhCtXu1VRQhKDr2TSZgDpK5W8SxrCCmjV3TbtOBxf6K9mbgwVNAa7Jj1045cYkvXCPkDVphzjYB7uhzhj7VJgq8hb4fM2QGWyuSj9MrHo6nNh6Igog2o-fQHr401wZkPYIKs&quot;,&quot;online&quot;:&quot;1&quot;}})' class='btn btn-default btn-sm' style='cursor:pointer;'>View Details</a>
+                                                                <a href='javascript:;' 
+                                                                onClick='chnagePassword(1)' class='btn btn-default btn-sm' style='cursor:pointer;'>Change Password</a>
+                                                            
+                                                            </td>
+                                                        </tr>
+                                                        
+														                                        </tbody>
+                                    </table>
+                               
+
+    <script>
+// jQuery( document ).ready( function( $ ) {
+// var $table1 = jQuery( '#example23' );
+// // Initialize DataTable
+// $table1.DataTable( {
+// "aLengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]],
+// "bStateSave": true
+// });
+// // Initalize Select Dropdown after DataTables is created
+// $table1.closest( '.dataTables_wrapper' ).find( 'select' ).select2( {
+// minimumResultsForSearch: -1
+// });
+// } );
+
+	
+	
+    $('#table-1').DataTable({
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+    </script>
+
+<style>
+	.modal-backdrop
+	{ z-index:0 !important;}
+</style>
+
+<script type="text/javascript">
+
+function chnagePassword(data)
+{
+	 var data = data;
+   //console.log(data);
+
+   jQuery('#modal-7').modal('show', {backdrop: 'static'});
+
+   var htmltext = "";
+
+   htmltext += '<div class="row">';
+       htmltext += '<div class="col-md-12"><h3 style="margin:0 0 20px;">Change Password</h3><form role="form" method="post" action="users.php?updatePasswrod=ok" class="form-horizontal form-groups-bordered"><div class="row"> <div class="col col-lg-12 col-md-12 col-sm-12"><div class="col-lg-12 col-md-12 col-sm-6"><div class="form-group width"><label for="field-1" class=" control-label">Password</label><input type="hidden" name="idd" value='+data+'><input type="text" class="form-control" name="password" id="password"></div></div></div></div><div class="row"> <div class="col col-lg-12 col-md-12 col-sm-12"><div class="col-lg-12 col-md-12 col-sm-6"><div class="form-group width"><input type="submit" class="btn btn-primary btn-block" value="Update Password"></div></div></div></div></form>';
+
+        htmltext += '</div>';
+    htmltext += '</div>';
+
+    $('#modal-7 .modal-body').html(htmltext);
+}
+
+
+function getuser_details(data) {
+
+   var data = data;
+   //console.log(data);
+
+   jQuery('#modal-7').modal('show', {backdrop: 'static'});
+
+   var htmltext = "";
+
+   htmltext += '<div class="row">';
+       htmltext += '<div class="col-md-12"><h3 style="margin:0 0 20px;">User Details</h3>';
+
+           for ( var key in data ) {
+
+                if( key == "UserInfo" ) {
+                    htmltext += '<p> ID: ' + data["User"].id + '</p>';
+                    htmltext += '<p> Name: ' + data["UserInfo"].first_name + ' ' + data["UserInfo"].last_name + '</p>';
+                    htmltext += '<p> Email: ' + data["User"].email + '</p>'; 
+                    htmltext += '<p> Phone: ' + data["UserInfo"].phone + '</p>'; 
+                    htmltext += '<p> Role: ' + data["User"].role + '</p>'; 
+                    htmltext += '<p> Created: ' + data["User"].created + '</p>'; 
+                    htmltext += '<p> Active: ' + data["User"].active + '</p>'; 
+                }
+                 
+            }
+
+        htmltext += '</div>';
+    htmltext += '</div>';
+
+    $('#modal-7 .modal-body').html(htmltext);
+
+}
+</script>
+
+<!--edit user-->
+<script type="text/javascript">
+function addtax() {
+   jQuery('#modal-7').modal('show', {backdrop: 'static'});
+}
+
+
+function editUserProfile(id,email,fname,lname) {
+  
+   var id = id;
+   var email = email;
+   var fname = fname;
+   var lname = lname;
+   
+   //alert(id);
+  //console.log(data);
+
+   jQuery('#modal-7').modal('show', {backdrop: 'static'});
+
+   var htmltext = "";
+
+   htmltext += '<div class="row">';
+       htmltext += '<div class="col-md-12"><h3 style="margin:0 0 20px;">Edit User</h3><form role="form" method="post" action="users.php?edit=ok" class="form-horizontal form-groups-bordered"><div class="row"><div class="col col-lg-12 col-md-12 col-sm-12">	<div class="col-lg-6 col-md-6 col-sm-6"><div class="form-group width"><input  type="hidden" class="form-control" value="'+id+'" name="user_id" id="user_id"><label for="field-1" class=" control-label">First Name</label><input type="text" class="form-control" name="first_name" id="first_name" value="'+fname+'"></div></div><div class="col-lg-6 col-md-6 col-sm-6"><div class="form-group width"><label for="field-1" class=" control-label">Last Name</label><input type="text" class="form-control" name="last_name" value="'+lname+'"  id="last_name"></div></div></div></div><div class="row"><div class="col col-lg-12 col-md-12 col-sm-12"><div class="col-lg-12 col-md-12 col-sm-6"><div class="form-group width"><label for="field-1" class=" control-label">Email</label><input type="email" class="form-control" name="email" id="email" value="'+email+'"></div></div></div></div><div class="row"><div class="col col-lg-12 col-md-12 col-sm-12"><div class="col-lg-12 col-md-12 col-sm-6"><div class="form-group width"><input type="submit" class="btn btn-primary btn-block" value="Update User"></div></div></div></div></form>';
+
+        htmltext += '</div>';
+    htmltext += '</div>';
+
+    $('#modal-7 .modal-body').html(htmltext);
+   
+}
+
+
+</script>
+<!--end edit user-->
+<!-- Footer -->
+<footer class="main">
+	
+	&copy; 2020 Copyright. All rights reserved.
+	
+</footer>
+
+<div id="chat" class="fixed" data-current-user="super admin" data-order-by-status="1" data-max-chat-history="25">
+	
+	<div class="chat-inner">
+	
+		
+		<h2 class="chat-header">
+			<a href="#" class="chat-close" data-animate="1"><i class="entypo-cancel"></i></a>
+			
+			<i class="entypo-users"></i>
+			Chat
+					</h2>
+		
+		
+		<div class="chat-group" id="group-1">
+					</div>
+	
+	</div>
+	
+	<!-- conversation template -->
+	<div class="chat-conversation">
+		
+		<div class="conversation-header">
+			<a href="#" class="conversation-close"><i class="entypo-cancel"></i></a>
+			
+			<span class="user-status"></span>
+			<span class="display-name"></span> 
+			<small></small>
+		</div>
+		
+		<ul class="conversation-body">	
+		</ul>
+		
+		<div class="chat-textarea">
+			<textarea class="form-control autogrow" placeholder="Type your message"></textarea>
+		</div>
+		
+	</div>
+	
+</div></div>
+	
+		
+	</div>
+<!-- Modal 8-->
+
+<div class="modal fade custom-width in" id="modal-8"  style=" background:#0000004d;">
+    <div class="modal-dialog" style="width:40%; margin-top:100px;">
+        <div class="modal-content" style="max-height: 500px; overflow-x: hidden;">
+            
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Edit User</h4>
+            </div>
+            <div class="modal-body">
+		
+			  <form role="form" method="post" action="users.php?edit=ok" class="form-horizontal form-groups-bordered">
+			 	<div class="row">
+					<div class="col col-lg-12 col-md-12 col-sm-12">
+						<div class="col-lg-6 col-md-6 col-sm-6">
+			 				<div class="form-group width">
+					 			<input  type="hidden" class="form-control" name="user_id" id="user_id">
+			            		<label for="field-1" class=" control-label">First Name</label>
+			                	<input type="text" class="form-control" name="first_name" id="first_name">
+			        		</div>
+					 	</div>
+
+			  			<div class="col-lg-6 col-md-6 col-sm-6">
+			           		<div class="form-group width">
+                                <label for="field-1" class=" control-label">Last Name</label>
+                                <input type="text" class="form-control" name="last_name"  id="last_name">
+			            	</div>
+			        	</div>
+					</div>
+			 	</div>
+                
+				<div class="row">			
+            		<div class="col col-lg-12 col-md-12 col-sm-12">	
+                    	<div class="col-lg-12 col-md-12 col-sm-6">
+                    		<div class="form-group width">
+                                <label for="field-1" class=" control-label">Email</label>
+                                <input type="email" class="form-control" name="email" id="email">
+			            	</div>
+			        	</div>
+					</div>
+				</div>
+			
+				<div class="row">			
+            		<div class="col col-lg-12 col-md-12 col-sm-12">	
+                    	<div class="col-lg-12 col-md-12 col-sm-6">
+                    		<div class="form-group width">
+			              		<input type="submit" class="btn btn-primary btn-block" value="Update User">
+			            	</div>
+			        	</div>
+					</div>
+				</div>
+			</form>	
+			</div>
+		</div>
+	</div>
+</div>
+
+	
+	
+	
+<!-- Modal 7 (Ajax Modal)-->
+<div class="modal fade custom-width in" id="modal-7"  style=" background:#0000004d;">
+    <div class="modal-dialog" style="width:50%; margin-top:100px;">
+        <div class="modal-content" style="max-height: 500px; overflow-x: hidden;">
+            
+            <div class="modal-header">
+	
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">&nbsp;</h4>
+            </div>
+            
+            <div class="modal-body">
+                content here.... 
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<style>
+.form-group.width {
+    width: 100%;
+}
+</style>
+
+
+	<link rel="stylesheet" href="assets/js/datatables/responsive/css/datatables.responsive.css">
+	<link rel="stylesheet" href="assets/js/select2/select2-bootstrap.css">
+	<link rel="stylesheet" href="assets/js/select2/select2.css">
+
+	<!-- Bottom Scripts -->
+	<script src="assets/js/gsap/main-gsap.js"></script>
+	<script src="assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
+	<script src="assets/js/bootstrap.js"></script>
+	<script src="assets/js/joinable.js"></script>
+	<script src="assets/js/resizeable.js"></script>
+	<script src="assets/js/neon-api.js"></script>
+	
+	<script src="assets/js/select2/select2.min.js"></script>
+	<script src="assets/js/neon-chat.js"></script>
+	<script src="assets/js/neon-custom.js"></script>
+	<script src="assets/js/neon-demo.js"></script>
+	
+	
+	<!--<script src="assets/js/jquery.dataTables.min.js"></script>
+	<script src="assets/js/datatables/TableTools.min.js"></script>
+	<script src="assets/js/dataTables.bootstrap.js"></script>
+	<script src="assets/js/datatables/jquery.dataTables.columnFilter.js"></script>
+	<script src="assets/js/datatables/lodash.min.js"></script>
+	<script src="assets/js/datatables/responsive/js/datatables.responsive.js"></script>
+	
+	<script src="as/datatables/dataTables.bootstrap.js"></script>
+	<script src="as/datatables/jquery.dataTables.min.js"></script>
+	<link href="as/datatables/jquery.dataTables.min.css" rel="stylesheet">
+	<link href="as/bootstrap.min.css" rel="stylesheet">
+	<link href="as/red.css" rel="stylesheet">
+	<link href="as/style.css" rel="stylesheet">
+	 <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+	
+	   
+	<script src="assets/js/select2/select2.min.js"></script>
+	<script src="assets/js/neon-chat.js"></script>
+	<script src="assets/js/neon-custom.js"></script>
+	<script src="assets/js/neon-demo.js"></script>
+	
+	
+	
+
+</body>
+</html>
+
