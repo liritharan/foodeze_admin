@@ -1,0 +1,933 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Neon Admin Panel" />
+<meta name="author" content="" />
+
+<title>Admin Panel</title>
+	<link rel="stylesheet" href="assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
+	<link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/neon-core.css">
+	<!--<link rel="stylesheet" href="assets/css/neon-theme.css">-->
+	<link rel="stylesheet" href="assets/css/neon-forms.css">
+	<link rel="stylesheet" href="assets/css/custom.css">
+	<link rel="stylesheet" href="assets/css/custom-datatables.css">
+	<script src="assets/js/jquery-1.11.0.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+	
+   <script>
+   $(window).load(function() {
+	  
+     $('#preloader').delay(350).fadeOut('slow');
+     $('body').delay(350).css({'overflow':'visible'});
+   })
+  </script>
+	    <script src="jquery.min.js"></script>
+	    <script src="assets/js/dynamic-menu.js"></script>
+   
+    <!-- This is data table -->
+    <script src="jquery.dataTables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+	
+	
+    <!-- end - This is for export functionality only -->
+	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	
+	
+	<script>
+	    ('#main-menu').dynamicMenu();
+
+	</script>
+	
+</head>
+<body class="page-body" data-url="http://neon.dev">
+
+    
+
+
+
+<div id="preloader" align="center">
+	<div id="loading">
+		<img src="http://bringthings.com/foodies/admin/assets/images/loader.gif" alt="Loading.." height="140">
+	</div>
+</div>
+
+
+<style>
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.5);
+    z-index: 9999999;
+	height: 100%;
+    width: 100%;
+}
+#loading {
+    width: 380px;
+    height: 200px;
+    position: absolute;
+    left: 43%;
+    top: 50%;
+    margin: -104px 0 0 -100px;
+}
+</style>
+
+
+		
+<style>
+	    .restaurants{
+	        background-color:#aac423;
+	    }
+	</style>
+
+
+<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->	
+	
+	<div class="sidebar-menu" style="min-height: 100vh;">
+  <header class="logo-env"> 
+    
+    <!-- logo -->
+    <div class="logo"> <a href="" style="font-size: 35px;font-weight: bold;"><img src="img/foodeze_logo.png" height="60" width="180" alt="" /></a> </div>
+    
+    <!-- logo collapse icon 
+    <div class="sidebar-collapse"> 
+        <a href="#" class="sidebar-collapse-icon with-animation">
+      add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition 
+      <i class="entypo-menu"></i> 
+      </a> 
+    </div>-->
+    
+    <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+    <div class="sidebar-mobile-menu visible-xs"> <a href="#" class="with-animation"><!-- add class "with-animation" to support animation --> 
+      <i class="entypo-menu"></i> </a> </div>
+  </header>
+  <ul id="main-menu" class="auto-inherit-active-class">
+    <!-- add class "multiple-expanded" to allow multiple submenus to open --> 
+    <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" --> 
+    <!-- Search Bar -->
+
+      <li class="dashboard"> <a href="dashboard.php"><i class="entypo-users"></i> <span class="title">Dashboard</span> </a></li>
+    
+
+            
+
+      
+      <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Manage Restaurants</span></a> 
+
+        <li class="restaurants"> <a href="restaurants.php"><i class="entypo-home"></i> <span class="title">Restaurants</span> </a></li>
+        <li class="restaurantrequest"> <a href="restaurantRequest.php"><i class="entypo-air"></i> <span class="title">Restaurant Request</span> </a></li>
+      </li>
+    
+
+      <li style="background:rgba(69, 74, 84, 0.3);" class="orders" > <a href="#" style="padding: 5px 10px;"><span class="title">Manage Orders</span></a> 
+
+        <li> <a href="orders.php?filter=AllOrder"><i class="entypo-air"></i> <span class="title">All Orders</span> </a></li>
+        <li> <a href="orders.php"><i class="entypo-air"></i> <span class="title">Active Orders</span> </a></li>
+        <li> <a href="orders.php?filter=completed"><i class="entypo-air"></i> <span class="title">Completed Orders</span> </a></li>
+        <li> <a href="orders.php?filter=restaurantRejected"><i class="entypo-air"></i> <span class="title">Restaurant Rejected</span> </a></li>
+
+      
+      </li>
+
+      <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Manage Rider</span></a> 
+         <li class="riders"> <a href="riders.php"><i class="entypo-users"></i> <span class="title">Our Riders</span></a> </li>
+	       <li class=riderrequest> <a href="ridersRequest.php"><i class="entypo-users"></i> <span class="title">Rider Request</span></a> </li>
+        <li class="chat"> <a href="chat.php"><i class="entypo-chat"></i> <span class="title">Chat Messages</span></a></li>
+      
+
+      
+	   
+      <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Manage Shift</span></a> 
+         <li class="ridershifts"><a href="Rider-shifts.php"><i class="entypo-clock"></i> <span class="title">Rider Shift</span></a> </li>
+         <li class="shifts"><a href="shifts.php"><i class="entypo-clock"></i> <span class="title">Open Shift</span></a> </li>
+      
+	    </li>
+	  
+     <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Manage Coupons</span></a> 
+	       <li class="coupons"><a href="Coupons.php"><i class="entypo-clock"></i> <span class="title">Restaurant Coupons</span></a> </li>
+         <li class="foodomia_coupons"><a href="Foodomia_Coupons.php"><i class="entypo-clock"></i> <span class="title">Foodeze Coupons</span></a> </li>
+	  </li>
+      
+        <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Earning</span></a> 
+           <li class="earning"><a href="earning.php"><i class="entypo-clock"></i> <span class="title">All Earnings</span></a> </li>
+      </li>
+    
+            
+      
+      
+      
+	  
+    
+  </ul>
+</div>
+			
+	<div class="main-content">
+	<div class="row">
+	
+	<!-- Profile Info and Notifications -->
+	<div class="col-md-6 col-sm-8 clearfix">
+		
+		<ul class="user-info pull-left pull-none-xsm">
+		
+						<!-- Profile Info -->
+			<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right 
+
+-->				
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<img src="assets/images/profile-picture.jpg" alt="" class="img-circle" width="44" />
+					john smith				</a>
+				
+				<ul class="dropdown-menu">
+					
+					<!-- Reverse Caret -->
+					<li class="caret"></li>
+					
+					<!-- Profile sub-links -->
+					<li>
+						<a href="profile.php">
+							<i class="entypo-user"></i>
+							Profile
+						</a>
+					</li>
+                    
+                    <li>
+                        <a href="login.php?log=out">
+                        	<i class="entypo-logout right"></i>
+                            Log Out 
+                        </a>
+                    </li>
+
+				</ul>
+			</li>
+		
+		</ul>
+	
+	</div>
+	
+	
+	<!-- Raw Links -->
+	<div class="col-md-6 col-sm-4 clearfix hidden-xs">
+		
+		<ul class="list-inline links-list pull-right">
+			
+			
+			<li class="sep"></li>
+
+			<li>
+				<a href="login.php?log=out">
+					Log Out <i class="entypo-logout right"></i>
+				</a>
+			</li>
+		</ul>
+		
+	</div>
+	
+</div>
+
+<hr />		
+	
+	<div class="row">
+        <div class="col-md-12">
+        
+        <div class="pull-left"><h2 class="toast-title">View all Restaurants</h2></div>
+        <div class="pull-right"><a style="position: relative; top: 10px;" href='add-restaurant.php' class='btn btn-default'>Add Restaurant</a></div>
+        <div class="clearfix"></div>
+        <br>
+       <table id="table-1" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Owner Name</th>
+                    <th>Owner Phone</th>
+                    <th>Phone</th>
+                    <th>Note</th>
+                    <th>Prep Time</th>
+                    <th>Promoted</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                            <td>1</td>
+                            <td>Scoma Restaurant</td>
+                            <td title=2>scoma@gmail.com</td>
+                            <td>john smith</td>
+                            <td>98765434567</td>
+                            <td>+27846743176</td>
+                            <td></td>
+                            <td>45 min</td>
+                            <td>0</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=1&userid=2' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=1&userid=2' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(1)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=1&userid=2' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=1&userid=2' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(1)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>2</td>
+                            <td>Subway</td>
+                            <td title=30>sundarbala22radson@gmail.com</td>
+                            <td>Sundar B</td>
+                            <td>9842259924</td>
+                            <td>+919842259924</td>
+                            <td>ok</td>
+                            <td>30 min</td>
+                            <td>1</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=2&userid=30' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=2&userid=30' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(2)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=2&userid=30' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=2&userid=30' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(2)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>3</td>
+                            <td>KFC</td>
+                            <td title=31>kfc@admin.com</td>
+                            <td>John Mathew</td>
+                            <td>0279999266</td>
+                            <td>0279999266</td>
+                            <td></td>
+                            <td>20 min</td>
+                            <td>0</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=3&userid=31' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=3&userid=31' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(3)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=3&userid=31' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=3&userid=31' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(3)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>4</td>
+                            <td>Meat and Eat</td>
+                            <td title=32>me@admin.com</td>
+                            <td>Moses Joel</td>
+                            <td>0275647548</td>
+                            <td>0275647548</td>
+                            <td></td>
+                            <td>30 min</td>
+                            <td>1</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=4&userid=32' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=4&userid=32' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(4)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=4&userid=32' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=4&userid=32' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(4)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>5</td>
+                            <td>Chicking</td>
+                            <td title=33>chicking@admin.com</td>
+                            <td>Jonathan Osteen</td>
+                            <td>0274172425</td>
+                            <td>0274172425</td>
+                            <td></td>
+                            <td>35 min</td>
+                            <td>1</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=5&userid=33' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=5&userid=33' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(5)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=5&userid=33' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=5&userid=33' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(5)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>6</td>
+                            <td>church's chicken</td>
+                            <td title=34>churchschicken@admin.com</td>
+                            <td>Francis Xavier </td>
+                            <td>0275355252</td>
+                            <td>0275355252</td>
+                            <td></td>
+                            <td>20 min</td>
+                            <td>0</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=6&userid=34' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=6&userid=34' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(6)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=6&userid=34' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=6&userid=34' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(6)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>8</td>
+                            <td>mcdonald's</td>
+                            <td title=36>macdonald@admin.com</td>
+                            <td>Joseph Hamon</td>
+                            <td>0277575757</td>
+                            <td>0277575757</td>
+                            <td></td>
+                            <td>40 min</td>
+                            <td>1</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=8&userid=36' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=8&userid=36' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(8)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=8&userid=36' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=8&userid=36' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(8)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>9</td>
+                            <td>Burger King</td>
+                            <td title=37>burgerking@admin.com</td>
+                            <td>Michael Myers</td>
+                            <td>0274932514</td>
+                            <td>0274932514</td>
+                            <td></td>
+                            <td>20 min</td>
+                            <td>1</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=9&userid=37' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=9&userid=37' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(9)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=9&userid=37' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=9&userid=37' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(9)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>10</td>
+                            <td>Domino's</td>
+                            <td title=38>dominos@admin.com</td>
+                            <td>William Marshall</td>
+                            <td>027546897</td>
+                            <td>027546897</td>
+                            <td></td>
+                            <td>25 min</td>
+                            <td>1</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=10&userid=38' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=10&userid=38' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(10)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=10&userid=38' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=10&userid=38' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(10)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>11</td>
+                            <td>cafe coffee day</td>
+                            <td title=39>cafecd@admin.com</td>
+                            <td>Leo Roger</td>
+                            <td>0271346798</td>
+                            <td>0271346798</td>
+                            <td></td>
+                            <td>20 min</td>
+                            <td>1</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=11&userid=39' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=11&userid=39' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(11)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=11&userid=39' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=11&userid=39' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(11)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>12</td>
+                            <td>church's chicken</td>
+                            <td title=40>churchc@admin.com</td>
+                            <td>Smith Nicholas</td>
+                            <td>0278527946</td>
+                            <td>0278527946</td>
+                            <td></td>
+                            <td>35 min</td>
+                            <td>0</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=12&userid=40' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=12&userid=40' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(12)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=12&userid=40' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=12&userid=40' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(12)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>13</td>
+                            <td>Reach Skyline</td>
+                            <td title=41>balamurugantp@yahoo.com</td>
+                            <td>Bala Murugan</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>40 min</td>
+                            <td>0</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=13&userid=41' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=13&userid=41' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(13)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=13&userid=41' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=13&userid=41' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(13)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>14</td>
+                            <td>NoQ</td>
+                            <td title=43>noq@noq.com</td>
+                            <td>Raj Guhan</td>
+                            <td>2798461663</td>
+                            <td>2798461663</td>
+                            <td></td>
+                            <td>50 min</td>
+                            <td>1</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=14&userid=43' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=14&userid=43' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(14)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=14&userid=43' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=14&userid=43' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(14)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>15</td>
+                            <td>FOOD Hut</td>
+                            <td title=45>sundar@kumar.com</td>
+                            <td>Sundar Bala</td>
+                            <td>9959595955</td>
+                            <td>9959595955</td>
+                            <td></td>
+                            <td>40 min</td>
+                            <td>0</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=15&userid=45' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=15&userid=45' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(15)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=15&userid=45' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=15&userid=45' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(15)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                             <tr>
+                            <td>16</td>
+                            <td>Pasta Nation</td>
+                            <td title=46>pasta@pasta.com</td>
+                            <td>Pasta Man</td>
+                            <td>9566865665</td>
+                            <td>9566865665</td>
+                            <td>Deliverable stuff</td>
+                            <td>23 min</td>
+                            <td>1</td>
+                            <td>
+							
+							 <a href='manage_menu.php?resid=16&userid=46' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Meal</a>
+							
+							<a href='../restaurant/admin_combo.php?resid=16&userid=46' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>Manage Menu</a>
+							
+								
+							
+                                <a href='javascript:;' onClick='getresto_details(16)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>View Details</a>
+
+                            <a href='../restaurant/admin_doc.php?resid=16&userid=46' class='btn btn-default btn-sm' style='margin-bottom:5px;' target='_blank'>View Doc</a>
+                                
+                                
+
+                                <a href='hotel_deals.php?resid=16&userid=46' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;' target='_blank'>Deals</a>
+
+                                                                        <a href='javascript:;' onClick='editresto_details(16)' class='btn btn-default btn-sm' style='cursor:pointer;margin-bottom:5px;'>Edit Details</a>
+                                                                        
+                            </td>
+                        </tr>
+                                         </tbody>
+        </table>
+        
+        <script type="text/javascript">
+
+			
+	    
+
+          var table = $('#table-1').DataTable();
+            // column order
+             table
+              .column( '0:visible' )
+              .order( 'asc' )
+              .draw();
+        </script>
+         
+            
+        </div>
+    </div>    
+
+<script type="text/javascript">
+function getresto_details($id) 
+{
+
+    jQuery('#modal-7').modal('show', {backdrop: 'static'});
+    document.getElementById("hotel_details_popup").innerHTML="loading...";
+    var xmlhttp;
+    if(window.XMLHttpRequest)
+      {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+      }
+    else
+      {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      
+      xmlhttp.onreadystatechange=function()
+      {
+        if(xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+           // alert(xmlhttp.responseText);
+            document.getElementById("hotel_details_popup").innerHTML=xmlhttp.responseText;
+        }
+      }
+    xmlhttp.open("GET","ajex-events.php?getHotelDetails=ok&resID="+$id);
+    xmlhttp.send();
+
+   // var data = data;
+
+   // //console.log(data);
+
+   // jQuery('#modal-7').modal('show', {backdrop: 'static'});
+
+   // var htmltext = "";
+
+   // htmltext += '<div class="row">';
+
+   //  htmltext += '</div>';
+
+   //  $('#modal-7 .modal-body').html(htmltext);
+
+}
+
+function editresto_details($id) 
+{
+    
+    jQuery('#modal-7').modal('show', {backdrop: 'static'});
+    document.getElementById("hotel_details_popup").innerHTML="loading...";
+    var xmlhttp;
+    if(window.XMLHttpRequest)
+      {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+      }
+    else
+      {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      
+      xmlhttp.onreadystatechange=function()
+      {
+        if(xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+           // alert(xmlhttp.responseText);
+            document.getElementById("hotel_details_popup").innerHTML=xmlhttp.responseText;
+        }
+      }
+    xmlhttp.open("GET","ajex-events.php?editHotelDetails=ok&resID="+$id);
+    xmlhttp.send();
+
+}    
+</script>
+<!-- Footer -->
+<footer class="main">
+	
+	&copy; 2020 Copyright. All rights reserved.
+	
+</footer>
+
+<div id="chat" class="fixed" data-current-user="john smith" data-order-by-status="1" data-max-chat-history="25">
+	
+	<div class="chat-inner">
+	
+		
+		<h2 class="chat-header">
+			<a href="#" class="chat-close" data-animate="1"><i class="entypo-cancel"></i></a>
+			
+			<i class="entypo-users"></i>
+			Chat
+					</h2>
+		
+		
+		<div class="chat-group" id="group-1">
+					</div>
+	
+	</div>
+	
+	<!-- conversation template -->
+	<div class="chat-conversation">
+		
+		<div class="conversation-header">
+			<a href="#" class="conversation-close"><i class="entypo-cancel"></i></a>
+			
+			<span class="user-status"></span>
+			<span class="display-name"></span> 
+			<small></small>
+		</div>
+		
+		<ul class="conversation-body">	
+		</ul>
+		
+		<div class="chat-textarea">
+			<textarea class="form-control autogrow" placeholder="Type your message"></textarea>
+		</div>
+		
+	</div>
+	
+</div></div>
+	
+		
+	</div>
+
+<!-- Modal 7 (Ajax Modal)-->
+<div class="modal fade custom-width in" id="modal-7">
+    <div class="modal-dialog" style="width: 90%;">
+        <div class="modal-content" style="max-height: 500px; overflow-x: hidden;">
+            
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">&nbsp;</h4>
+            </div>
+            
+            <div class="modal-body" id="hotel_details_popup" style="margin: 20px; overflow: scroll;">
+                Loading...
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+	<link rel="stylesheet" href="assets/js/datatables/responsive/css/datatables.responsive.css">
+	<link rel="stylesheet" href="assets/js/select2/select2-bootstrap.css">
+	<link rel="stylesheet" href="assets/js/select2/select2.css">
+
+	<!-- Bottom Scripts -->
+	<script src="assets/js/gsap/main-gsap.js"></script>
+	<script src="assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
+	<script src="assets/js/bootstrap.js"></script>
+	<script src="assets/js/joinable.js"></script>
+	<script src="assets/js/resizeable.js"></script>
+	<script src="assets/js/neon-api.js"></script>
+	
+	<script src="assets/js/select2/select2.min.js"></script>
+	<script src="assets/js/neon-chat.js"></script>
+	<script src="assets/js/neon-custom.js"></script>
+	<script src="assets/js/neon-demo.js"></script>
+	
+	
+	<!--<script src="assets/js/jquery.dataTables.min.js"></script>
+	<script src="assets/js/datatables/TableTools.min.js"></script>
+	<script src="assets/js/dataTables.bootstrap.js"></script>
+	<script src="assets/js/datatables/jquery.dataTables.columnFilter.js"></script>
+	<script src="assets/js/datatables/lodash.min.js"></script>
+	<script src="assets/js/datatables/responsive/js/datatables.responsive.js"></script>
+	
+	<script src="as/datatables/dataTables.bootstrap.js"></script>
+	<script src="as/datatables/jquery.dataTables.min.js"></script>
+	<link href="as/datatables/jquery.dataTables.min.css" rel="stylesheet">
+	<link href="as/bootstrap.min.css" rel="stylesheet">
+	<link href="as/red.css" rel="stylesheet">
+	<link href="as/style.css" rel="stylesheet">
+	 <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+	
+	   
+	<script src="assets/js/select2/select2.min.js"></script>
+	<script src="assets/js/neon-chat.js"></script>
+	<script src="assets/js/neon-custom.js"></script>
+	<script src="assets/js/neon-demo.js"></script>
+	
+	
+	
+</body>
+</html>

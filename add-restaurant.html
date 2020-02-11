@@ -1,0 +1,793 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Neon Admin Panel" />
+<meta name="author" content="" />
+
+<title>Admin Panel</title>
+	<link rel="stylesheet" href="assets/js/jquery-ui/css/no-theme/jquery-ui-1.10.3.custom.min.css">
+	<link rel="stylesheet" href="assets/css/font-icons/entypo/css/entypo.css">
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/neon-core.css">
+	<!--<link rel="stylesheet" href="assets/css/neon-theme.css">-->
+	<link rel="stylesheet" href="assets/css/neon-forms.css">
+	<link rel="stylesheet" href="assets/css/custom.css">
+	<link rel="stylesheet" href="assets/css/custom-datatables.css">
+	<script src="assets/js/jquery-1.11.0.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+	
+   <script>
+   $(window).load(function() {
+	  
+     $('#preloader').delay(350).fadeOut('slow');
+     $('body').delay(350).css({'overflow':'visible'});
+   })
+  </script>
+	    <script src="jquery.min.js"></script>
+	    <script src="assets/js/dynamic-menu.js"></script>
+   
+    <!-- This is data table -->
+    <script src="jquery.dataTables.min.js"></script>
+    <!-- start - This is for export functionality only -->
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
+    <script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+	
+	
+    <!-- end - This is for export functionality only -->
+	<!--[if lt IE 9]><script src="assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	
+	
+	<script>
+	    ('#main-menu').dynamicMenu();
+
+	</script>
+	
+</head>
+<body class="page-body" data-url="http://neon.dev">
+
+    
+
+
+
+<div id="preloader" align="center">
+	<div id="loading">
+		<img src="http://bringthings.com/foodies/admin/assets/images/loader.gif" alt="Loading.." height="140">
+	</div>
+</div>
+
+
+<style>
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.5);
+    z-index: 9999999;
+	height: 100%;
+    width: 100%;
+}
+#loading {
+    width: 380px;
+    height: 200px;
+    position: absolute;
+    left: 43%;
+    top: 50%;
+    margin: -104px 0 0 -100px;
+}
+</style>
+
+
+		<body class="page-body" data-url="http://neon.dev">
+
+<div class="page-container"><!-- add class "sidebar-collapsed" to close sidebar by default, "chat-visible" to make chat appear always -->	
+	
+	<div class="sidebar-menu" style="min-height: 100vh;">
+  <header class="logo-env"> 
+    
+    <!-- logo -->
+    <div class="logo"> <a href="" style="font-size: 35px;font-weight: bold;"><img src="img/foodeze_logo.png" height="60" width="180" alt="" /></a> </div>
+    
+    <!-- logo collapse icon 
+    <div class="sidebar-collapse"> 
+        <a href="#" class="sidebar-collapse-icon with-animation">
+      add class "with-animation" if you want sidebar to have animation during expanding/collapsing transition 
+      <i class="entypo-menu"></i> 
+      </a> 
+    </div>-->
+    
+    <!-- open/close menu icon (do not remove if you want to enable menu on mobile devices) -->
+    <div class="sidebar-mobile-menu visible-xs"> <a href="#" class="with-animation"><!-- add class "with-animation" to support animation --> 
+      <i class="entypo-menu"></i> </a> </div>
+  </header>
+  <ul id="main-menu" class="auto-inherit-active-class">
+    <!-- add class "multiple-expanded" to allow multiple submenus to open --> 
+    <!-- class "auto-inherit-active-class" will automatically add "active" class for parent elements who are marked already with class "active" --> 
+    <!-- Search Bar -->
+
+      <li class="dashboard"> <a href="dashboard.php"><i class="entypo-users"></i> <span class="title">Dashboard</span> </a></li>
+    
+
+            
+
+      
+      <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Manage Restaurants</span></a> 
+
+        <li class="restaurants"> <a href="restaurants.php"><i class="entypo-home"></i> <span class="title">Restaurants</span> </a></li>
+        <li class="restaurantrequest"> <a href="restaurantRequest.php"><i class="entypo-air"></i> <span class="title">Restaurant Request</span> </a></li>
+      </li>
+    
+
+      <li style="background:rgba(69, 74, 84, 0.3);" class="orders" > <a href="#" style="padding: 5px 10px;"><span class="title">Manage Orders</span></a> 
+
+        <li> <a href="orders.php?filter=AllOrder"><i class="entypo-air"></i> <span class="title">All Orders</span> </a></li>
+        <li> <a href="orders.php"><i class="entypo-air"></i> <span class="title">Active Orders</span> </a></li>
+        <li> <a href="orders.php?filter=completed"><i class="entypo-air"></i> <span class="title">Completed Orders</span> </a></li>
+        <li> <a href="orders.php?filter=restaurantRejected"><i class="entypo-air"></i> <span class="title">Restaurant Rejected</span> </a></li>
+
+      
+      </li>
+
+      <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Manage Rider</span></a> 
+         <li class="riders"> <a href="riders.php"><i class="entypo-users"></i> <span class="title">Our Riders</span></a> </li>
+	       <li class=riderrequest> <a href="ridersRequest.php"><i class="entypo-users"></i> <span class="title">Rider Request</span></a> </li>
+        <li class="chat"> <a href="chat.php"><i class="entypo-chat"></i> <span class="title">Chat Messages</span></a></li>
+      
+
+      
+	   
+      <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Manage Shift</span></a> 
+         <li class="ridershifts"><a href="Rider-shifts.php"><i class="entypo-clock"></i> <span class="title">Rider Shift</span></a> </li>
+         <li class="shifts"><a href="shifts.php"><i class="entypo-clock"></i> <span class="title">Open Shift</span></a> </li>
+      
+	    </li>
+	  
+     <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Manage Coupons</span></a> 
+	       <li class="coupons"><a href="Coupons.php"><i class="entypo-clock"></i> <span class="title">Restaurant Coupons</span></a> </li>
+         <li class="foodomia_coupons"><a href="Foodomia_Coupons.php"><i class="entypo-clock"></i> <span class="title">Foodeze Coupons</span></a> </li>
+	  </li>
+      
+        <li style="background:rgba(69, 74, 84, 0.3);"> <a href="#" style="padding: 5px 10px;"><span class="title">Earning</span></a> 
+           <li class="earning"><a href="earning.php"><i class="entypo-clock"></i> <span class="title">All Earnings</span></a> </li>
+      </li>
+    
+            
+      
+      
+      
+	  
+    
+  </ul>
+</div>
+			
+	<div class="main-content">
+	<div class="row">
+	
+	<!-- Profile Info and Notifications -->
+	<div class="col-md-6 col-sm-8 clearfix">
+		
+		<ul class="user-info pull-left pull-none-xsm">
+		
+						<!-- Profile Info -->
+			<li class="profile-info dropdown"><!-- add class "pull-right" if you want to place this from right 
+
+-->				
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					<img src="assets/images/profile-picture.jpg" alt="" class="img-circle" width="44" />
+					john smith				</a>
+				
+				<ul class="dropdown-menu">
+					
+					<!-- Reverse Caret -->
+					<li class="caret"></li>
+					
+					<!-- Profile sub-links -->
+					<li>
+						<a href="profile.php">
+							<i class="entypo-user"></i>
+							Profile
+						</a>
+					</li>
+                    
+                    <li>
+                        <a href="login.php?log=out">
+                        	<i class="entypo-logout right"></i>
+                            Log Out 
+                        </a>
+                    </li>
+
+				</ul>
+			</li>
+		
+		</ul>
+	
+	</div>
+	
+	
+	<!-- Raw Links -->
+	<div class="col-md-6 col-sm-4 clearfix hidden-xs">
+		
+		<ul class="list-inline links-list pull-right">
+			
+			
+			<li class="sep"></li>
+
+			<li>
+				<a href="login.php?log=out">
+					Log Out <i class="entypo-logout right"></i>
+				</a>
+			</li>
+		</ul>
+		
+	</div>
+	
+</div>
+
+<hr />		
+	<h2 class="toast-title">Add Restaurant</h2>
+   <div class="panel-body">
+		        
+        <form role="form" method="post" action="add-restaurant.php?insert=ok" enctype="multipart/form-data" class="form-horizontal form-groups-bordered">
+        
+<div class="row">
+<div class="col-sm-12">
+<div class="col-sm-6">      
+	  <div class="form-group">
+           
+            <div class="col-sm-6">
+                
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
+                        <img src="http://placehold.it/200x150" alt="...">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px"></div>
+                    <div>
+                        <span class="btn btn-white btn-file">
+                            <span class="fileinput-new">Select Logo</span>
+                            <span class="fileinput-exists">Change</span>
+                            <input type="file" name="upload_image" accept="image/*" reqired>
+                        </span>
+                        <a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div> </div>
+		
+	<div class="col-sm-6">
+		 <div class="form-group">
+            
+            <div class="col-sm-6">
+                
+                <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;" data-trigger="fileinput">
+                        <img src="http://placehold.it/200x150" alt="...">
+                    </div>
+                    <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px"></div>
+                    <div>
+                        <span class="btn btn-white btn-file">
+                            <span class="fileinput-new">Select Cover image</span>
+                            <span class="fileinput-exists">Change</span>
+                            <input type="file" name="Cover_upload_image" accept="image/*" reqired>
+                        </span>
+                        <a href="#" class="btn btn-orange fileinput-exists" data-dismiss="fileinput">Remove</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div> </div>
+		
+		</div> </div>
+		
+		
+		
+		
+		
+		
+<div class="row">
+    <div class="col col-lg-12 col-md-12 col-sm-12">
+        <div class="col-lg-4 col-md-4 col-sm-4">
+
+            <div class="form-group width">
+                <label for="field-1" class="control-label">Name</label>
+                 <input type="text" class="form-control" name="name" placeholder="Name" required>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4">	
+        
+            <div class="form-group width">
+                <label for="field-1" class=" control-label">Slogan</label>
+              <input type="text" class="form-control" name="slogan" placeholder="Slogan" required>
+		    </div>
+        </div>
+
+        <div class="col-lg-4 col-md-4 col-sm-4">	
+            <div class="form-group width">
+                <label for="field-1" class="control-label">About</label>
+                    <textarea class="form-control" name="about" rows="3" placeholder="About" required></textarea>
+                </div>
+            </div> 
+        </div> 
+    </div> 
+
+<div class="row">
+<div class="col col-lg-12 col-md-12 col-sm-12">
+<div class="col-lg-4 col-md-4 col-sm-4">	
+  <div class="form-group width">
+            <label for="field-1" class="control-label"> Speciality </label>
+                
+				 <input type="text" class="form-control" name="speciality" placeholder="speciality" required>
+            </div>
+        
+</div>     
+      
+      
+        
+        		
+<div class="col-lg-4 col-md-4 col-sm-4">
+        
+        <div class="form-group width">
+            <label for="field-1" class=" control-label">Phone</label>
+                <input type="text" class="form-control" name="phone" placeholder="Phone" data-mask="phone" required>
+        </div>
+		</div>
+		
+	<div class="col-lg-4 col-md-4 col-sm-4">
+		<div class="form-group width">
+            <label for="field-1" class="control-label">Timezone</label>
+            
+          
+                <select name="timezone" class="form-control" required>
+                    <option value="">Select timezone</option>
+                    <option value="+01:00">Netherlands (GMT+01:00)</option>
+               </select>
+				</div>
+				</div>
+				</div>
+				</div>
+           
+        
+<div class="row">
+<div class="col col-lg-12 col-md-12 col-sm-12">
+<div class="col-lg-4 col-md-4 col-sm-4">
+ <div class="form-group width">
+            <label for="field-1" class=" control-label">State</label>
+                                <select name="state" class="form-control" required>
+                    <option value="">Select state</option> 
+                    <option value="Chennai">Chennai</option><option value="Gauteng">Gauteng</option>                </select>
+             </div>
+        </div>
+		<div class="col-lg-4 col-md-4 col-sm-4">
+         <div class="form-group width">
+            <label for="field-1" class="control-label">Menu Style</label>
+                <select name="menu_style" class="form-control">
+                    <option value="1">Style 1</option>
+                    <option value="2">Style 2</option>
+                    <option value="3">Style 3</option>
+                    <option value="4">Style 4</option>
+                </select>
+        </div>
+		</div>
+		
+        <div class="col-lg-4 col-md-4 col-sm-4">
+        <div class="form-group width">
+            <label for="field-1" class="control-label">Promoted</label>
+                <select name="promoted" class="form-control">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+        </div>
+		  </div>
+        </div>
+     
+<div class="row">
+<div class="col col-lg-12 col-md-12 col-sm-12">
+<div class="col-lg-4 col-md-4 col-sm-4">
+ <div class="form-group width">
+            <label for="field-1" class="control-label">City</label>
+                                <select name="city" class="form-control" required>
+                    <option value="">Select city</option> 
+                    <option value="Chennai">Chennai</option><option value="Johannesburg">Johannesburg</option>                </select>
+            </div>
+        </div>
+        
+<div class="col-lg-4 col-md-4 col-sm-4">      
+	  <div class="form-group width">
+            <label for="field-1" class="control-label">Country</label>
+                <select name="country" class="form-control" required>
+                    <option value="">Select country</option> 
+                    <option value="India">India</option><option value="South Africa">South Africa</option>                </select>
+            </div>
+        </div>
+		
+		
+		<div class="col-lg-4 col-md-4 col-sm-4"> 
+		 <div class="form-group width">
+            <label for="field-1" class="control-label">Currency</label>
+                <select name="currency_id" class="form-control" required>
+                    <option value="">Select Currency</option> 
+                    <option value="1">USD</option><option value="10">R</option>                </select>
+            </div>
+        </div>
+	</div>
+   </div>
+		
+<div class="row">
+    
+    <div class="col col-lg-12 col-md-12 col-sm-12">
+            
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group width">
+                    <label for="field-1" class="control-label">Tax</label>
+                    <select name="tax_id" class="form-control" required>
+                        <option value="">Select Tax</option> 	
+            		                                                    <option value="16">
+                                                    Johannesburg (15%)
+                                            </option>
+                                                                                    <option value="17">
+                                                    Chennai (5%)
+                                            </option>
+                                                            </select>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group width">
+                    <label for="field-1" class=" control-label" required>ZIP</label>
+                    <input type="text" class="form-control" name="zip" placeholder="ZIP"  required>
+                </div>
+            </div>
+    		
+    		<div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group width">
+                    <label for="field-1" class="control-label" required>Lattitude</label>
+                    <input type="text" class="form-control" name="lat" placeholder="Lattitude" required>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group width">
+                    <label for="field-1" class="control-label" required>Longitude</label>
+                    <input type="text" class="form-control" name="long" placeholder="Longitude" required>
+                </div>
+            </div>
+    </div>
+
+
+    <div class="col col-lg-12 col-md-12 col-sm-12">
+            
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group width">
+                    <label for="field-1" class="control-label">min order price</label>
+                    <input type="text" class="form-control" name="min_order_price" placeholder="min order price" required>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group width">
+                    <label for="field-1" class=" control-label">delivery free range</label>
+                    <input type="text" class="form-control" name="delivery_free_range" placeholder="delivery free range" required>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group width">
+                    <label for="field-1" class="control-label">preparation time</label>
+                    <input type="text" class="form-control" name="preparation_time" placeholder="preparation time" required>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group width">
+                    <label for="field-1" class="control-label">Tax implementation</label>
+                    <select name="tax_free" class="form-control" required>
+                        <option value="1">No Tax will implement</option>    
+                        <option value="0">Tax will implement</option>    
+                    </select>
+                </div>
+            </div>
+    </div>
+
+    <div class="col col-lg-12 col-md-12 col-sm-12">
+            
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <div class="form-group width">
+                    <label for="field-1" class="control-label">Google tracking code</label>
+                    <input type="text" class="form-control" name="google_analytics" placeholder="Analytic tracking code">
+                </div>
+            </div>
+
+             <div class="col-lg-3 col-md-3 col-sm-3">
+               <div class="form-group width">
+                    <label for="field-1" class="control-label">Note</label>
+                    <textarea type="text" class="form-control" name="notes" placeholder="Note (write  what ever you want to write)"></textarea>
+                </div>
+            </div>
+            
+           
+    </div>
+
+
+</div>
+
+ <div id="clonediv" class="1" style="padding: 20px; border:1px solid #eee;"">    
+<div class="row">
+<div class="col col-lg-12 col-md-12 col-sm-12"><!--Monday start-->
+ <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="form-group width">
+                <label for="field-1" class="control-label">Day</label>
+                    <input type="text" class="form-control" name="day[]" placeholder="Day" value="Monday" readonly>
+                </div>
+            </div>
+<div class="col-lg-4 col-md-4 col-sm-4">
+ <div class="form-group width">
+                <label for="field-1" class=" control-label">Opening Time</label>
+              <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="opening_time[]" placeholder="Opening Time" />
+ </div>
+  </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="form-group width">
+                <label for="field-1" class="control-label">Closing Time</label>
+                
+                    <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="closing_time[]" placeholder="Closing Time" />
+                </div>
+            </div>
+           </div><!--Monday end-->
+		   
+<div class="col col-lg-12 col-md-12 col-sm-12"><!--Tuesday start-->
+ <div class="col-lg-4 col-md-4 col-sm-4">   
+		  <div class="form-group width">
+               
+                    <input type="text" class="form-control" name="day[]" placeholder="Day" value="Tuesday" readonly>
+                </div>
+            </div>  
+           <div class="col-lg-4 col-md-4 col-sm-4">   
+		  <div class="form-group width">
+               
+                    <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="opening_time[]" placeholder="Opening Time" />
+                </div>
+            </div>
+            
+           <div class="col-lg-4 col-md-4 col-sm-4">   
+		  <div class="form-group width">
+                
+                    <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="closing_time[]" placeholder="Closing Time" />
+                </div>
+            </div>
+            </div><!--Tuesday end-->
+		<div class="col col-lg-12 col-md-12 col-sm-12"><!--Wednesday start-->
+		<div class="col-lg-4 col-md-4 col-sm-4">  	
+            <div class="form-group width">
+             <input type="text" class="form-control" name="day[]" placeholder="Day" value="Wednesday" readonly>
+                </div>
+            </div>
+ <div class="col-lg-4 col-md-4 col-sm-4">  	
+<div class="form-group width">
+                    <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="opening_time[]" placeholder="Opening Time" />
+                </div>
+            </div>
+            
+           <div class="col-lg-4 col-md-4 col-sm-4">  	
+            <div class="form-group width">
+                    <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="closing_time[]" placeholder="Closing Time" />
+                </div>
+            </div>
+                </div><!--Wednesday end-->
+				
+        
+
+       	<div class="col col-lg-12 col-md-12 col-sm-12"><!--Thursday start-->
+		 <div class="col-lg-4 col-md-4 col-sm-4">  	
+            <div class="form-group width">
+                    <input type="text" class="form-control" name="day[]" placeholder="Day" value="Thursday" readonly>
+                </div>
+            </div>
+		<div class="col-lg-4 col-md-4 col-sm-4">  	
+            <div class="form-group width">
+                    <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="opening_time[]" placeholder="Opening Time" />
+                </div>
+            </div>
+            
+           <div class="col-lg-4 col-md-4 col-sm-4">  	
+            <div class="form-group width">
+                    <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="closing_time[]" placeholder="Closing Time" />
+                </div>
+            </div>
+        </div><!--Thursday end-->
+
+     	<div class="col col-lg-12 col-md-12 col-sm-12"><!--Friday start-->
+		 <div class="col-lg-4 col-md-4 col-sm-4">  	
+                <div class="form-group width">
+                    <input type="text" class="form-control" name="day[]" placeholder="Day" value="Friday" readonly>
+                </div>
+            </div>
+		 <div class="col-lg-4 col-md-4 col-sm-4">  	
+            <div class="form-group width">
+                    <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="opening_time[]" placeholder="Opening Time" />
+                </div>
+            </div>
+            
+          
+		   <div class="col-lg-4 col-md-4 col-sm-4">  	
+            <div class="form-group width">
+                    <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="closing_time[]" placeholder="Closing Time" />
+                </div>
+            </div>  
+        </div><!--Friday end-->
+
+       <div class="col col-lg-12 col-md-12 col-sm-12"><!--Saturday start-->
+	    <div class="col-lg-4 col-md-4 col-sm-4">  	
+                <div class="form-group width">
+                    <input type="text" class="form-control" name="day[]" placeholder="Day" value="Saturday" readonly>
+                </div>
+            </div>
+		 <div class="col-lg-4 col-md-4 col-sm-4">  	
+                <div class="form-group width">
+                    <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="opening_time[]" placeholder="Opening Time" />
+                </div>
+            </div>
+            
+          <div class="col-lg-4 col-md-4 col-sm-4">  	
+                <div class="form-group width">
+                    <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="closing_time[]" placeholder="Closing Time" />
+                </div>
+            </div>
+        </div><!--Saturday end-->
+		
+ <div class="col col-lg-12 col-md-12 col-sm-12"><!--Sunday start-->
+ <div class="col-lg-4 col-md-4 col-sm-4">  	
+                <div class="form-group width">
+                    <input type="text" class="form-control" name="day[]" placeholder="Day" value="Sunday" readonly>
+                </div>
+            </div>
+	    <div class="col-lg-4 col-md-4 col-sm-4">  	
+                <div class="form-group width">
+                    <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="opening_time[]" placeholder="Opening Time" />
+                </div>
+            </div>
+
+	         <div class="col-lg-4 col-md-4 col-sm-4">  	
+                <div class="form-group width">
+                    <input type="text" class="form-control timepicker" data-template="dropdown" data-show-seconds="true" data-default-time="11:25 AM" data-show-meridian="true" data-minute-step="5" data-second-step="5" name="closing_time[]" placeholder="Closing Time" />
+                </div>
+            </div>
+           </div> <!--Sunday end-->    
+        </div><!--end row-->	
+ </div>
+      <div class="row">
+	 <div class="col col-lg-12 col-md-12 col-sm-12"><!--Sunday start-->
+     <div class="col-lg-3 col-md-3 col-sm-3">  	
+             <div class="form-group width">  
+            <label for="field-1" class=" control-label">Email</label>
+            <input type="text" class="form-control" name="email" placeholder="Email" required>
+            </div>
+        </div>
+        
+         <div class="col-lg-3 col-md-3 col-sm-3">  	
+             <div class="form-group width">  
+            <label for="field-1" class=" control-label">Password</label>
+                <input type="password" class="form-control" name="password" placeholder="Password" required>
+            </div>
+        </div>
+        
+        <div class="col-lg-3 col-md-3 col-sm-3">  	
+             <div class="form-group width">  
+            <label for="field-1" class="control-label">First Name</label>
+                <input type="text" class="form-control" name="first_name" placeholder="First Name" required>
+            </div>
+        </div>
+        
+       <div class="col-lg-3 col-md-3 col-sm-3">  	
+        <div class="form-group width"> 
+            <label for="field-1" class="control-label">Last Name</label>
+                <input type="text" class="form-control" name="last_name" placeholder="Last Name" required>
+            </div>
+        </div>
+		</div>
+		</div>
+        
+       
+        <div class="col col-lg-12 col-sm-12 col-md-12">
+                    <div class="form-group width">
+                <input type="submit" class="btn btn-primary" value="Add Restaurant">
+            </div>
+        </div>
+		
+        
+        </form>
+    </div>
+    
+
+<!-- Footer -->
+<!-- Footer -->
+<footer class="main">
+	
+	&copy; 2020 Copyright. All rights reserved.
+	
+</footer>
+
+<div id="chat" class="fixed" data-current-user="john smith" data-order-by-status="1" data-max-chat-history="25">
+	
+	<div class="chat-inner">
+	
+		
+		<h2 class="chat-header">
+			<a href="#" class="chat-close" data-animate="1"><i class="entypo-cancel"></i></a>
+			
+			<i class="entypo-users"></i>
+			Chat
+					</h2>
+		
+		
+		<div class="chat-group" id="group-1">
+					</div>
+	
+	</div>
+	
+	<!-- conversation template -->
+	<div class="chat-conversation">
+		
+		<div class="conversation-header">
+			<a href="#" class="conversation-close"><i class="entypo-cancel"></i></a>
+			
+			<span class="user-status"></span>
+			<span class="display-name"></span> 
+			<small></small>
+		</div>
+		
+		<ul class="conversation-body">	
+		</ul>
+		
+		<div class="chat-textarea">
+			<textarea class="form-control autogrow" placeholder="Type your message"></textarea>
+		</div>
+		
+	</div>
+	
+</div></div>
+	
+		
+	</div>
+
+
+<style>
+.form-group.width {
+    width: 100%;
+}
+</style>
+
+	<!-- Bottom Scripts -->
+	<script src="assets/js/gsap/main-gsap.js"></script>
+	<script src="assets/js/jquery-ui/js/jquery-ui-1.10.3.minimal.min.js"></script>
+	<script src="assets/js/bootstrap.js"></script>
+    <script src="assets/js/bootstrap-timepicker.min.js"></script>
+    <script src="assets/js/jquery.inputmask.bundle.min.js"></script>
+	<script src="assets/js/joinable.js"></script>
+	<script src="assets/js/resizeable.js"></script>
+	<script src="assets/js/neon-api.js"></script>
+	<script src="assets/js/neon-custom.js"></script>
+	<script src="assets/js/neon-demo.js"></script>
+    <script src="assets/js/fileinput.js"></script>
+
+</body>
+</html>
